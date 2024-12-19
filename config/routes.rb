@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   resources :reviews
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -10,5 +12,5 @@ Rails.application.routes.draw do
   patch '/users/:id', to: 'users#update'
   delete '/users/:id', to: 'users#destroy'
 
-  
+  mount Sidekiq::Web => '/sidekiq'
 end
