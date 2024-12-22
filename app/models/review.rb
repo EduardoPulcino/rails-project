@@ -1,4 +1,5 @@
 class Review < ApplicationRecord
-    validates :customer_name, presence: true
-    
+    belongs_to :event_type
+
+    validates :customer_name, :event_type, presence: true
 end
