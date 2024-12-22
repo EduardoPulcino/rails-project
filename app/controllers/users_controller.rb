@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 	def show
 		respond_to do |format|
 			format.html
-			format.json { render json: @user } # Caso você queira suportar JSON também
+			format.json { render json: @user }
 		end
 	end
 
