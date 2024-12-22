@@ -8,7 +8,10 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		render json: @user
+		respond_to do |format|
+			format.html
+			format.json { render json: @user } # Caso você queira suportar JSON também
+		end
 	end
 
 	def new
@@ -18,6 +21,11 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		@user.role = 'USER'
+
+		if params[:user][:photo]
+      @user.photo.attach(params[:user][:photo])
+    end
+
 		if @user.save
 			redirect_to @user, notice: 'User created!'
 		else
