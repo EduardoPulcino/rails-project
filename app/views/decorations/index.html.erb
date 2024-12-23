@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Decorations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Event type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @decorations.each do |decoration| %>
+      <tr>
+        <td><%= decoration.name %></td>
+        <td><%= decoration.event_type_id %></td>
+        <td><%= link_to 'Show', decoration %></td>
+        <td><%= link_to 'Edit', edit_decoration_path(decoration) %></td>
+        <td><%= link_to 'Destroy', decoration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Decoration', new_decoration_path %>

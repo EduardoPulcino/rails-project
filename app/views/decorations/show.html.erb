@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @decoration.name %>
+</p>
+
+<p>
+  <strong>Event type:</strong>
+  <%= EventType.find(@decoration.event_type_id).name %>
+</p>
+
+<% if @decoration.photo.attached? %>
+  <div style="height: 300px;">
+    <%= image_tag url_for(@decoration.photo), alt: "Foto da decoracao", style: "height: 100%; width: auto;" %>  
+  </div>
+<% else %>
+  <p>Sem foto cadastrada</p>
+<% end %>
+
+
+<%= link_to 'Edit', edit_decoration_path(@decoration) %> |
+<%= link_to 'Back', decorations_path %>
