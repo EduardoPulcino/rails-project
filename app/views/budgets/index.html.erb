@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Budgets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event date</th>
+      <th>Guest count</th>
+      <th>Status</th>
+      <th>Canceled</th>
+      <th>Start time</th>
+      <th>End time</th>
+      <th>Cake flavor</th>
+      <th>Main course</th>
+      <th>Profit</th>
+      <th>Revenue</th>
+      <th>Expense</th>
+      <th>Suggestion</th>
+      <th>Google event</th>
+      <th>Event type</th>
+      <th>User</th>
+      <th>Decoration</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @budgets.each do |budget| %>
+      <tr>
+        <td><%= budget.event_date %></td>
+        <td><%= budget.guest_count %></td>
+        <td><%= budget.status %></td>
+        <td><%= budget.canceled %></td>
+        <td><%= budget.start_time %></td>
+        <td><%= budget.end_time %></td>
+        <td><%= budget.cake_flavor %></td>
+        <td><%= budget.main_course %></td>
+        <td><%= budget.profit %></td>
+        <td><%= budget.revenue %></td>
+        <td><%= budget.expense %></td>
+        <td><%= budget.suggestion %></td>
+        <td><%= budget.google_event_id %></td>
+        <td><%= budget.event_type_id %></td>
+        <td><%= budget.user_id %></td>
+        <td><%= budget.decoration_id %></td>
+        <td><%= link_to 'Show', budget %></td>
+        <td><%= link_to 'Edit', edit_budget_path(budget) %></td>
+        <td><%= link_to 'Destroy', budget, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Budget', new_budget_path %>

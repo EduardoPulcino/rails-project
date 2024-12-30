@@ -1,6 +1,13 @@
 class DecorationsController < ApplicationController
   before_action :set_decoration, only: %i[ show edit update destroy ]
 
+  def by_event_type_id
+    event_type_id = params[:event_type_id]
+
+    decorations = Decoration.find_by_event_type_id(event_type_id)
+
+    render json: decorations
+  end
   # GET /decorations or /decorations.json
   def index
     @decorations = Decoration.all

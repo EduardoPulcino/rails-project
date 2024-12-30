@@ -9,7 +9,7 @@ end
 gem 'rails', '6.1.4'
 gem 'sidekiq'
 gem 'pg'
-gem 'webpacker', '~> 5.0'
+gem 'webpacker', '~> 5.2'
 gem 'rack-proxy', '0.7.7'
 gem 'semantic_range', '3.1.0'
 gem 'puma', '~> 3.7'
