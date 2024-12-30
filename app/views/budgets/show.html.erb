@@ -1,0 +1,84 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Event date:</strong>
+  <%= @budget.event_date %>
+</p>
+
+<p>
+  <strong>Guest count:</strong>
+  <%= @budget.guest_count %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @budget.status %>
+</p>
+
+<p>
+  <strong>Canceled:</strong>
+  <%= @budget.canceled %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @budget.start_time.strftime("%H:%M:%S") %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @budget.end_time.strftime("%H:%M:%S") %>
+</p>
+
+<p>
+  <strong>Cake flavor:</strong>
+  <%= @budget.cake_flavor %>
+</p>
+
+<p>
+  <strong>Main course:</strong>
+  <%= @budget.main_course %>
+</p>
+
+<p>
+  <strong>Profit:</strong>
+  <%= @budget.profit %>
+</p>
+
+<p>
+  <strong>Revenue:</strong>
+  <%= @budget.revenue %>
+</p>
+
+<p>
+  <strong>Expense:</strong>
+  <%= @budget.expense %>
+</p>
+
+<p>
+  <strong>Suggestion:</strong>
+  <%= @budget.suggestion %>
+</p>
+
+<p>
+  <strong>Google event:</strong>
+  <%= @budget.google_event_id %>
+</p>
+
+<p>
+  <strong>Event type:</strong>
+  <%= EventType.find(@budget.event_type_id).name %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @budget.user_id %>
+</p>
+
+<p>
+  <strong>Decoration:</strong>
+  <%= Decoration.find(@budget.decoration_id).name %>
+</p>
+
+<%= link_to 'Edit', edit_budget_path(@budget) %> |
+<%= link_to 'Back', budgets_path %>

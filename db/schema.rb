@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_12_22_233717) do
+ActiveRecord::Schema.define(version: 2024_12_30_071824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,30 @@ ActiveRecord::Schema.define(version: 2024_12_22_233717) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "budgets", force: :cascade do |t|
+    t.date "event_date"
+    t.integer "guest_count"
+    t.string "status", default: "PENDENTE"
+    t.boolean "canceled", default: false
+    t.time "start_time"
+    t.time "end_time"
+    t.string "cake_flavor"
+    t.string "main_course"
+    t.float "profit"
+    t.float "revenue"
+    t.float "expense"
+    t.string "suggestion"
+    t.string "google_event_id"
+    t.bigint "event_type_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "decoration_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["decoration_id"], name: "index_budgets_on_decoration_id"
+    t.index ["event_type_id"], name: "index_budgets_on_event_type_id"
+    t.index ["user_id"], name: "index_budgets_on_user_id"
   end
 
   create_table "decorations", force: :cascade do |t|
@@ -74,11 +98,14 @@ ActiveRecord::Schema.define(version: 2024_12_22_233717) do
     t.string "photo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "role"
+    t.string "role", default: "USER"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "budgets", "decorations"
+  add_foreign_key "budgets", "event_types"
+  add_foreign_key "budgets", "users"
   add_foreign_key "decorations", "event_types"
   add_foreign_key "reviews", "event_types"
 end
