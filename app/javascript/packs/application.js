@@ -1,3 +1,6 @@
+import Rails from '@rails/ujs'
+Rails.start()
+
 document.addEventListener('DOMContentLoaded', function() {
   const eventTypeSelect = document.getElementById('budget_event_type_id');
   const decorationSelect = document.getElementById('budget_decoration_id');

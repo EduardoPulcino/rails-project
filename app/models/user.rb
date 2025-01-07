@@ -1,11 +1,18 @@
 class User < ApplicationRecord
-    enum role: { admin: 'ADMIN', user: 'USER' }
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
 
-    validates :name, presence: true
-    validates :email, presence: true, uniqueness: true
-    validates :password, presence: true
-    validates :phone, presence: true, uniqueness: true
+	enum role: { admin: 'ADMIN', user: 'USER' }
 
-    has_one_attached :photo
-    has_many :budgets
+	attr_accessor :name, :phone, :photo
+
+	validates :name, presence: true
+	validates :email, presence: true, uniqueness: true
+	validates :password, presence: true
+	validates :phone, presence: true, uniqueness: true
+
+	has_one_attached :photo
+	has_many :budgets
 end

@@ -1,0 +1,7 @@
+<% if user_signed_in? %>
+	<h1> Olá, <%= current_user.email %> </h1>
+	<%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+<% else %>
+	<h1> Bem vindo! Faça login para continuar </h1>
+	<%= link_to 'Login', new_user_session_path %>
+<% end %>
