@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_12_30_075343) do
+ActiveRecord::Schema.define(version: 2025_01_08_223449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,18 +91,14 @@ ActiveRecord::Schema.define(version: 2024_12_30_075343) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password"
-    t.string "phone"
-    t.string "photo"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "role", default: "USER"
+    t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "name"
+    t.string "phone"
+    t.string "role", default: "USER"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -111,7 +107,6 @@ ActiveRecord::Schema.define(version: 2024_12_30_075343) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "budgets", "decorations"
   add_foreign_key "budgets", "event_types"
-  add_foreign_key "budgets", "users"
   add_foreign_key "decorations", "event_types"
   add_foreign_key "reviews", "event_types"
 end

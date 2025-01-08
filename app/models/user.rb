@@ -6,8 +6,6 @@ class User < ApplicationRecord
 
 	enum role: { admin: 'ADMIN', user: 'USER' }
 
-	attr_accessor :name, :phone, :photo
-
 	validates :name, presence: true
 	validates :email, presence: true, uniqueness: true
 	validates :password, presence: true
