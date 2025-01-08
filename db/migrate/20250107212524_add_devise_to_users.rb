@@ -34,7 +34,6 @@ class AddDeviseToUsers < ActiveRecord::Migration[6.1]
 
       t.string :name
       t.string :phone
-      t.string :photo
       t.string :role
 
       # Uncomment below if timestamps were not included in your original model.
