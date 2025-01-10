@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2025_01_08_223449) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -107,7 +106,6 @@ ActiveRecord::Schema.define(version: 2025_01_08_223449) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "budgets", "decorations"
   add_foreign_key "budgets", "event_types"
-  add_foreign_key "budgets", "users"
   add_foreign_key "decorations", "event_types"
   add_foreign_key "reviews", "event_types"
 end
