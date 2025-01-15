@@ -11,5 +11,9 @@ FactoryBot.define do
 				user.photo.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'avatar.png')), filename: 'avatar.png', content_type: 'image/png')
 			end
 		end
+
+		trait :admin do
+			role { :admin }
+		end
 	end
 end
