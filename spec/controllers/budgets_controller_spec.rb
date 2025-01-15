@@ -137,7 +137,7 @@ RSpec.describe BudgetsController do
     context 'when current user has budgets' do
       it 'return budgets' do
         sign_in user
-        get :index
+        get :index, format: :json
 
         expect(JSON.parse(response.body)).to match_array([budget.as_json])
       end
@@ -148,7 +148,7 @@ RSpec.describe BudgetsController do
         user_test = create(:user, email: 'nobudget@test.com', phone: '1178918231')
         sign_in user_test
 
-        get :index
+        get :index, format: :json
 
         expect(JSON.parse(response.body)).to match_array([])
       end

@@ -1,12 +1,15 @@
 class BudgetsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_budget, only: %i[ show edit update destroy ]
-  # before_action :authenticate_budget_owner, only: %i[ show edit update destroy ]
 
   # GET /budgets or /budgets.json
   def index
     @budgets = current_user.budgets
-    render json: @budgets, status: :ok
+    
+    respond_to do |format|
+      format.html
+      format.json { render json: @budgets, status: :ok }
+    end
   end
 
   # GET /budgets/1 or /budgets/1.json
@@ -71,11 +74,5 @@ class BudgetsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def budget_params
       params.require(:budget).permit(:event_date, :guest_count, :status, :canceled, :start_time, :end_time, :cake_flavor, :main_course, :profit, :revenue, :expense, :suggestion, :google_event_id, :event_type_id, :decoration_id)
-    end
-
-    def authenticate_budget_owner
-      unless @budget.user_id == current_user.id
-        redirect_to new_budget_path, alert: 'You are not allowed'
-      end
     end
 end
