@@ -76,7 +76,7 @@ RSpec.describe DecorationsController do
 
     it 'returns decorations by event type id' do
       get :by_event_type_id, params: { event_type_id: event_type.id }
-      binding.pry
+
       expect(JSON.parse(response.body)).to match_array([
                                                         decoration.as_json,
                                                         second_decoration.as_json,
