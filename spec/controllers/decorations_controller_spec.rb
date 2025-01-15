@@ -68,4 +68,20 @@ RSpec.describe DecorationsController do
       expect(JSON.parse(response.body)).to include(decoration.as_json)
     end
   end
+
+  describe '#by_event_type_id' do
+    let!(:decoration) { create(:decoration, event_type_id: event_type.id) }
+    let!(:second_decoration) { create(:decoration, event_type_id: event_type.id) }
+    let!(:third_decoration) { create(:decoration, event_type_id: event_type.id) }
+
+    it 'returns decorations by event type id' do
+      get :by_event_type_id, params: { event_type_id: event_type.id }
+      binding.pry
+      expect(JSON.parse(response.body)).to match_array([
+                                                        decoration.as_json,
+                                                        second_decoration.as_json,
+                                                        third_decoration.as_json
+                                                        ])
+    end
+  end
 end
