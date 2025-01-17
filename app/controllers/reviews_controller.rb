@@ -1,9 +1,16 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!, except: %i[ index show ]
   before_action :set_review, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_admin, only: %i[ edit update destroy new create ]
+  
   # GET /reviews or /reviews.json
   def index
     @reviews = Review.all
+
+    respond_to do |format|
+      format.html
+      format.json {render json: @reviews, status: :ok}
+    end
   end
 
   # GET /reviews/1 or /reviews/1.json

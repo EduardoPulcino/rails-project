@@ -1,10 +1,15 @@
 class BudgetsController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  before_action :authenticate_user!
   before_action :set_budget, only: %i[ show edit update destroy ]
 
   # GET /budgets or /budgets.json
   def index
-    @budgets = Budget.all
+    @budgets = current_user.budgets
+    
+    respond_to do |format|
+      format.html
+      format.json { render json: @budgets, status: :ok }
+    end
   end
 
   # GET /budgets/1 or /budgets/1.json
@@ -22,7 +27,7 @@ class BudgetsController < ApplicationController
 
   # POST /budgets or /budgets.json
   def create
-    @budget = Budget.new(budget_params)
+    @budget = current_user.budgets.new(budget_params)
 
     @budget.end_time = @budget.start_time + 2.hours
 
@@ -63,11 +68,11 @@ class BudgetsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_budget
-      @budget = Budget.find(params[:id])
+      @budget = current_user.budgets.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def budget_params
-      params.require(:budget).permit(:event_date, :guest_count, :status, :canceled, :start_time, :end_time, :cake_flavor, :main_course, :profit, :revenue, :expense, :suggestion, :google_event_id, :event_type_id, :user_id, :decoration_id)
+      params.require(:budget).permit(:event_date, :guest_count, :status, :canceled, :start_time, :end_time, :cake_flavor, :main_course, :profit, :revenue, :expense, :suggestion, :google_event_id, :event_type_id, :decoration_id)
     end
 end

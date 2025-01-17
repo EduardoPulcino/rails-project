@@ -13,4 +13,8 @@ class User < ApplicationRecord
 
 	has_one_attached :photo
 	has_many :budgets
+
+	def admin?
+		self.role == 'admin'
+	end
 end

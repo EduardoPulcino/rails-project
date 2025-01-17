@@ -1,5 +1,7 @@
 class DecorationsController < ApplicationController
+  before_action :authenticate_user!, except: %i[ by_event_type_id index show ]
   before_action :set_decoration, only: %i[ show edit update destroy ]
+  before_action :authenticate_admin, only: %i[ edit update destroy new create ]
 
   def by_event_type_id
     event_type_id = params[:event_type_id]
@@ -11,6 +13,11 @@ class DecorationsController < ApplicationController
   # GET /decorations or /decorations.json
   def index
     @decorations = Decoration.all
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @decorations, status: :ok }
+    end
   end
 
   # GET /decorations/1 or /decorations/1.json
