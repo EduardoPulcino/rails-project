@@ -33,6 +33,17 @@ class BudgetsController < ApplicationController
 
     respond_to do |format|
       if @budget.save
+        event_details = {
+          summary: "Reunião de Planejamento",
+          location: "Sala 101",
+          description: "Discutir as metas do projeto",
+          start_time:  Time.parse('2025-02-14 18:00:00').iso8601,
+          end_time: Time.parse('2025-02-14 20:00:00').iso8601,
+          timezone: 'America/Sao_Paulo'
+        }
+    
+        CreateEventCalendar.create_event(event_details)
+
         format.html { redirect_to budget_url(@budget), notice: "Budget was successfully created." }
         format.json { render :show, status: :created, location: @budget }
       else
