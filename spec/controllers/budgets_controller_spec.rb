@@ -13,11 +13,22 @@ RSpec.describe BudgetsController do
                                                 decoration_id: decoration.id) }
 
       context 'authorized' do
-        it 'creates a budget successfully' do
-          sign_in user
+        context 'creates a budget successfully' do
+          before { sign_in user }
 
-          expect{ post :create, params: { budget: budget } }.to change(Budget, :count).by(1)
-          expect(response).to have_http_status(302)
+          it 'creates a event in google calendar' do
+            stub_request(:post, "https://www.googleapis.com/oauth2/v4/token").
+                         to_return(status: 200)
+
+            event_double = double('Event', id: 'test_id')
+
+            allow(CreateEventCalendar).to receive(:create_event).and_return(event_double)
+
+            post :create, params: { budget: budget }
+
+            expect(CreateEventCalendar).to have_received(:create_event).once
+            expect(Budget.last.google_event_id).to eq('test_id')
+          end
         end
       end
 
