@@ -11,4 +11,5 @@
 <% else %>
 	<h1> Bem vindo! Faça login para continuar </h1>
 	<%= link_to 'Login', new_user_session_path %>
+	<%= link_to 'Login com Google', user_google_oauth2_omniauth_authorize_path, method: :post %>
 <% end %>

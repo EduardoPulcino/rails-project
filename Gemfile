@@ -24,6 +24,11 @@ gem 'pry-rails'
 # gem 'redis', '~> 3.0'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.4.6', require: false
+gem 'google-apis-calendar_v3'
+gem 'google-api-client'
+gem 'googleauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
 
 
 # Use Capistrano for deployment
@@ -31,12 +36,14 @@ gem 'bootsnap', '>= 1.4.6', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'dotenv-rails'
   gem 'rspec-rails', '~> 6.1.0'
   gem 'factory_bot_rails'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'webmock'
 end
 
 group :development do

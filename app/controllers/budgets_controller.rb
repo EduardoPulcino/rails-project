@@ -32,7 +32,10 @@ class BudgetsController < ApplicationController
     @budget.end_time = @budget.start_time + 2.hours
 
     respond_to do |format|
-      if @budget.save
+      if @budget.save   
+        event = CreateEventCalendar.create_event(@budget.id)
+        @budget.update(google_event_id: event.id)
+
         format.html { redirect_to budget_url(@budget), notice: "Budget was successfully created." }
         format.json { render :show, status: :created, location: @budget }
       else
