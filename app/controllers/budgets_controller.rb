@@ -33,8 +33,7 @@ class BudgetsController < ApplicationController
 
     respond_to do |format|
       if @budget.save   
-        event = CreateEventCalendar.create_event(@budget.id)
-        @budget.update(google_event_id: event.id)
+        CreateEventGoogleCalendarWorker.perform_async(@budget.id)
 
         format.html { redirect_to budget_url(@budget), notice: "Budget was successfully created." }
         format.json { render :show, status: :created, location: @budget }
