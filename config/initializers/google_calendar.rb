@@ -5,10 +5,10 @@ require 'googleauth/stores/file_token_store'
 Google::Apis::ClientOptions.default.application_name = "MyRailsApp"
 Google::Apis::ClientOptions.default.application_version = "1.0"
 
-KEY_PATH = Rails.root.join('config', 'calendar_credentials.json')
+google_json_key = ENV['GOOGLE_CALENDAR_JSON_KEY']
 
 credentials = Google::Auth::ServiceAccountCredentials.make_creds(
-  json_key_io: File.open(KEY_PATH), 
+  json_key_io: StringIO.new(google_json_key), 
   scope: 'https://www.googleapis.com/auth/calendar'
 )
 

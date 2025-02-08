@@ -3,7 +3,7 @@ require 'googleauth'
 require 'googleauth/stores/file_token_store'
 
 class CreateEventCalendar
-  SHARED_CALENDAR_ID = 'rubyonrails532@gmail.com'
+  SHARED_CALENDAR_ID = ENV['GOOGLE_CALENDAR_ID']
 
   def self.create_event(budget_id)
     event = build_event(budget_id)
