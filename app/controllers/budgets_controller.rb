@@ -73,20 +73,30 @@ class BudgetsController < ApplicationController
   end
 
   def cancel
-    @budget.update(status: 'CANCELADO', canceled: true)
+    if @budget.update(status: 'CANCELADO', canceled: true) 
+      DeleteEventCalendar.new.delete_event(@budget.id)
 
-    respond_to do |format|
-      format.html { redirect_to budget_url(@budget), notice: "Budget was successfully canceled." }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to budget_url(@budget), notice: "Budget was successfully canceled." }
+        format.json { head :no_content }
+      end
+    else
+      format.html { render :edit, status: :unprocessable_entity }
+      format.json { render json: @budget.errors, status: :unprocessable_entity }
     end
   end
 
   def confirm
-    @budget.update(status: 'CONFIRMADO', canceled: false)
+    if @budget.update(status: 'CONFIRMADO', canceled: false)
+      UpdateEventCalendar.new.update_event(@budget.id)
 
-    respond_to do |format|
-      format.html { redirect_to budget_url(@budget), notice: "Budget was successfully confirmed." }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to budget_url(@budget), notice: "Budget was successfully confirmed." }
+        format.json { head :no_content }
+      end
+    else
+      format.html { render :edit, status: :unprocessable_entity }
+      format.json { render json: @budget.errors, status: :unprocessable_entity }
     end
   end
 
