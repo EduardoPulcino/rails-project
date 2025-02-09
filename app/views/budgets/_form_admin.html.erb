@@ -1,0 +1,72 @@
+<%= form_with(model: budget) do |form| %>
+  <% if budget.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(budget.errors.count, "error") %> prohibited this budget from being saved:</h2>
+
+      <ul>
+        <% budget.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <div class="field">
+    <%= form.label :event_date %>
+    <%= form.date_select :event_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :guest_count %>
+    <%= form.number_field :guest_count %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_time %>
+    <%= form.time_select :start_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_time %>
+    <%= form.time_select :end_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :suggestion %>
+    <%= form.text_field :suggestion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cake_flavor %>
+    <%= form.text_field :cake_flavor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_course %>
+    <%= form.text_field :main_course %>
+  </div>
+
+  <div class="field">
+    <%= form.label :revenue %>
+    <%= form.number_field :revenue, step: "0.01" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :expense %>
+    <%= form.number_field :expense, step: "0.01" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :event_type_id %>
+    <%= form.collection_select :event_type_id, EventType.all, :id, :name, prompt: 'Selecione o tipo de evento', onchange: 'this.form.submit()' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :decoration_id %>
+    <%= form.collection_select :decoration_id, Decoration.all, :id, :name, prompt: 'Selecione uma decoração' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

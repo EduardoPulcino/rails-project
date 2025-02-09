@@ -16,18 +16,16 @@ RSpec.describe BudgetsController do
         context 'creates a budget successfully' do
           before { sign_in user }
 
-          it 'creates a event in google calendar' do
+          it 'creates an event in google calendar' do
             stub_request(:post, "https://www.googleapis.com/oauth2/v4/token").
                          to_return(status: 200)
 
-            event_double = double('Event', id: 'test_id')
-
-            allow(CreateEventCalendar).to receive(:create_event).and_return(event_double)
+            allow(CreateEventGoogleCalendarWorker).to receive(:perform_async).with(instance_of(Integer))
 
             post :create, params: { budget: budget }
-
-            expect(CreateEventCalendar).to have_received(:create_event).once
-            expect(Budget.last.google_event_id).to eq('test_id')
+        
+            expect(Budget.last.suggestion).to eq('Test')
+            expect(CreateEventGoogleCalendarWorker).to have_received(:perform_async).with(Budget.last.id)
           end
         end
       end
@@ -78,7 +76,7 @@ RSpec.describe BudgetsController do
           user_not_allowed = create(:user, email: 'not-allowed@test.com', phone: '1109876543')
           sign_in user_not_allowed
   
-          expect{ put :update, params: { id: budget.id, budget: } }.to raise_error(ActiveRecord::RecordNotFound)
+          expect{ put :update, params: { id: budget.id } }.to raise_error(ActiveRecord::RecordNotFound)
         end
       end
     end
@@ -162,6 +160,45 @@ RSpec.describe BudgetsController do
         get :index, format: :json
 
         expect(JSON.parse(response.body)).to match_array([])
+      end
+    end
+  end
+
+  context 'admin actions' do
+    let(:admin) { create(:user, :admin, email: 'cancel@cancel.com', phone: '1112345678') }
+    let!(:budget) { create(:budget, user_id: user.id,
+                            event_type_id: event_type.id,
+                            decoration_id: decoration.id) }
+
+    let!(:budget_params) { FactoryBot.attributes_for(:budget,
+                                                        user_id: user.id,
+                                                        event_type_id: event_type.id,
+                                                        decoration_id: decoration.id) }
+    describe '#cancel' do
+      context 'when current user is an admin' do
+        it 'cancels successfully' do
+          sign_in admin
+
+          put :cancel, params: { id: budget.id, budget: budget_params }
+          budget.reload
+
+          expect(budget.status).to eq('CANCELADO')
+          expect(budget.canceled).to be_truthy
+        end
+      end
+    end
+
+    describe '#confirm' do
+      context 'when current user is an admin' do
+        it 'cancels successfully' do
+          sign_in admin
+
+          put :confirm, params: { id: budget.id, budget: budget_params }
+          budget.reload
+
+          expect(budget.status).to eq('CONFIRMADO')
+          expect(budget.canceled).to be_falsey
+        end
       end
     end
   end

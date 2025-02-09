@@ -16,11 +16,6 @@
 </p>
 
 <p>
-  <strong>Canceled:</strong>
-  <%= @budget.canceled %>
-</p>
-
-<p>
   <strong>Start time:</strong>
   <%= @budget.start_time.strftime("%H:%M:%S") %>
 </p>
@@ -41,6 +36,22 @@
 </p>
 
 <p>
+  <strong>Event type:</strong>
+  <%= EventType.find(@budget.event_type_id).name %>
+</p>
+
+<p>
+  <strong>Decoration:</strong>
+  <%= Decoration.find(@budget.decoration_id).name %>
+</p>
+
+<p>
+  <strong>Suggestion:</strong>
+  <%= @budget.suggestion %>
+</p>
+
+<% if @current_user.admin? %>
+  <p>
   <strong>Profit:</strong>
   <%= @budget.profit %>
 </p>
@@ -55,30 +66,10 @@
   <%= @budget.expense %>
 </p>
 
-<p>
-  <strong>Suggestion:</strong>
-  <%= @budget.suggestion %>
-</p>
 
-<p>
-  <strong>Google event:</strong>
-  <%= @budget.google_event_id %>
-</p>
-
-<p>
-  <strong>Event type:</strong>
-  <%= EventType.find(@budget.event_type_id).name %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @budget.user_id %>
-</p>
-
-<p>
-  <strong>Decoration:</strong>
-  <%= Decoration.find(@budget.decoration_id).name %>
-</p>
+<%= button_to 'Cancel', cancel_budget_path(@budget), method: :put %>
+<%= button_to 'Confirm', confirm_budget_path(@budget), method: :put %>
+<% end %>
 
 <%= link_to 'Edit', edit_budget_path(@budget) %> |
 <%= link_to 'Back', budgets_path %>

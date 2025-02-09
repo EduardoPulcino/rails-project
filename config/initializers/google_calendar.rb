@@ -2,9 +2,6 @@ require 'google/apis/calendar_v3'
 require 'googleauth'
 require 'googleauth/stores/file_token_store'
 
-Google::Apis::ClientOptions.default.application_name = "MyRailsApp"
-Google::Apis::ClientOptions.default.application_version = "1.0"
-
 google_json_key = ENV['GOOGLE_CALENDAR_JSON_KEY']
 
 credentials = Google::Auth::ServiceAccountCredentials.make_creds(

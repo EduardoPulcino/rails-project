@@ -1,10 +1,15 @@
 class BudgetsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_budget, only: %i[ show edit update destroy ]
+  before_action :set_budget, only: %i[ show edit update destroy cancel confirm ]
+  before_action :authenticate_admin, only: %i[ cancel confirm ]
 
   # GET /budgets or /budgets.json
   def index
-    @budgets = current_user.budgets
+    if current_user.admin?
+      @budgets = Budget.all
+    else
+      @budgets = current_user.budgets
+    end
     
     respond_to do |format|
       format.html
@@ -67,10 +72,42 @@ class BudgetsController < ApplicationController
     end
   end
 
+  def cancel
+    if @budget.update(status: 'CANCELADO', canceled: true) 
+      DeleteEventCalendar.new.delete_event(@budget.id)
+
+      respond_to do |format|
+        format.html { redirect_to budget_url(@budget), notice: "Budget was successfully canceled." }
+        format.json { head :no_content }
+      end
+    else
+      format.html { render :edit, status: :unprocessable_entity }
+      format.json { render json: @budget.errors, status: :unprocessable_entity }
+    end
+  end
+
+  def confirm
+    if @budget.update(status: 'CONFIRMADO', canceled: false)
+      UpdateEventCalendar.new.update_event(@budget.id)
+
+      respond_to do |format|
+        format.html { redirect_to budget_url(@budget), notice: "Budget was successfully confirmed." }
+        format.json { head :no_content }
+      end
+    else
+      format.html { render :edit, status: :unprocessable_entity }
+      format.json { render json: @budget.errors, status: :unprocessable_entity }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_budget
-      @budget = current_user.budgets.find(params[:id])
+      if current_user.admin?
+        @budget = Budget.find(params[:id])
+      else
+        @budget = current_user.budgets.find(params[:id])
+      end
     end
 
     # Only allow a list of trusted parameters through.
