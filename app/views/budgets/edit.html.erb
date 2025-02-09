@@ -1,6 +1,10 @@
 <h1>Editing Budget</h1>
 
-<%= render 'form', budget: @budget %>
+<% if @current_user.admin? %>
+  <%= render 'form_admin', budget: @budget %>
+<% else %>
+  <%= render 'form', budget: @budget %>
+<% end %>
 
 <%= link_to 'Show', @budget %> |
 <%= link_to 'Back', budgets_path %>

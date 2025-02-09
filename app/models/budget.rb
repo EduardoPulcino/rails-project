@@ -3,6 +3,8 @@ class Budget < ApplicationRecord
   belongs_to :user
   belongs_to :decoration
 
+  before_save :calculate_profit
+
   validates :event_date, :guest_count, :start_time, :event_type, presence: true
   
   validates :guest_count, numericality: { 
@@ -19,6 +21,12 @@ class Budget < ApplicationRecord
   def event_date_is_in_the_future
     if event_date.present? && event_date <= Time.zone.today
       errors.add(:event_date, "deve ser uma data no futuro")
+    end
+  end
+
+  def calculate_profit
+    if revenue.present? && expense.present?
+      self.profit = revenue - expense
     end
   end
 end
