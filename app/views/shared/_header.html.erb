@@ -1,0 +1,30 @@
+<header class="header">
+	<div class="container">
+
+		<%= link_to image_tag("CastrilloEventos.png", alt: "logo simone castrillo", class: "imgLogo"), root_path %>
+			<nav class="desktop">
+				<ul class="nav_links">
+					<li> <%= link_to "Home", "#bannerId" %> </li>
+					<li> <%= link_to "Eventos", "#events" %> </li>
+					<li> <%= link_to "Reservas", "#reservas" %> </li>
+					<li><%= link_to "Dúvidas", "#duvidas" %></li>
+        	<li><%= link_to "Gastronomia", root_path %></li>
+				</ul>
+			</nav>
+			<div class="container_buttons desktop" >
+				<%= link_to "Solicitar Orçamento", new_budget_path, class: "btn-default-bgRosa" %>
+				<% if !user_signed_in? %>
+					<%= link_to "Login", new_user_session_path, class: "btn-default-bgTransparent" %>
+				<% else %>
+					<%= link_to edit_user_password_path, style: "display:flex; align-items:center; gap:10px;" do %>
+						<% if current_user.photo.attached? %>
+							<%= image_tag current_user.photo, width: 50, alt: "avatar" %>
+						<% else %>
+							<%= image_tag "avatar.png" , width: 30, height: 30, style: "border-radius:100%;", alt: "avatar" %>
+						<% end %>
+						<p style="color:white; font-weight:bold;"><%= current_user.name %></p>
+					<% end %>
+				<% end %>
+			</div>
+	</div>
+</header>

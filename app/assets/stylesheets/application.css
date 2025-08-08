@@ -1,15 +1,184 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+ *= require header
+*/
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: #fff;
+}
+.titulo-perfil{
+  font-size: 44px;
+  color: #C54477;
+}
+button {
+  font-family: "Montserrat", sans-serif;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+.btn-default-bgRosa {
+  background-color: #C54477;
+  padding: 11.6px 20px;
+  color: #fff;
+  border-radius: 50px;
+  font-weight: bold;
+}
+
+.btn-default-bgRosa-perfil {
+  background-color: #C54477;
+  padding: 10px 40px;
+  color: #fff;
+  border-radius: 10px;
+  font-weight: bold;
+}
+.btn-default-bgTransparent-perfil {
+  background-color: transparent;
+  padding: 10px 40px;
+  color: #FFB6C1;
+  border-radius: 10px;
+  border: 2px solid #FFB6C1;
+
+  font-weight: bold;
+}
+.btn-default-bgRosa:hover {
+  background-color: #9b2c59;
+  transition: 0.2s;
+
+}
+.btn-default-bgTransparent {
+  background-color: transparent;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: bold;
+  color: #FFB6C1;
+  border: 2px solid #FFB6C1;
+  transition: 0.2s;
+}
+.btn-default-bgTransparent:hover {
+  background-color: #FFB6C1;
+  color: #fff !important;
+}
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  color: #ffffff; 
+  font-size: 30px !important;
+}
+
+.swiper-pagination-bullet-active{
+  background-color: #fff !important;
+}
+.arrow {
+  border-radius: 12px;
+}
+
+.full-width {
+  width: 100%;
+  display: flex;
+  text-align: center;
+}
+.titulo-principal {
+    font-size: 40px;
+    color: #FFB6C1;
+    margin: 40px 0 10px;
+}
+.descricao {
+  color: #fff;
+}
+.hoverRosa:hover {
+  background-color: transparent;
+}
+.buttonAjuste {
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 20px;
+}
+
+.container-input {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 50%;
+  color: #fff;
+
+}
+label {
+  color: #fff;
+
+}
+input {
+  padding: 8px 10px;
+  border-radius: 16px;
+  font-family: 'Montserrat', sans-serif;
+  /* color: #454545; */
+  background-color: #ffffff16;
+  border:2px solid #40597a;
+  color: #d9d9d9;
+  font-size: 16px;
+
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(80%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(90%) contrast(90%);
+  cursor: pointer;
+}
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(80%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(90%) contrast(90%);
+  cursor: pointer;
+}
+
+select {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  border:2px solid #40597a;
+  color: #d9d9d9;
+  background-color: #ffffff1f;
+  padding: 8px 10px;
+  border-radius: 16px;
+}
+
+option {
+  background-color: #445366;
+  color: #d9d9d9; 
+  border:2px solid #40597a;
+
+}
+textarea {
+  padding: 8px 10px;
+  border-radius: 16px;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #ffffff16;
+  border:2px solid #40597a;
+  color: #d9d9d9;
+  font-size: 16px;
+  height: 120px;
+  resize: none;
+  width: 100%;
+}
+textarea::placeholder {
+  color: #d9d9d9;
+
+}
+input::placeholder {
+  color: #d9d9d9;
+
+}
+.container-input-full {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+
+  flex-direction: column;
+}
+
+@media screen and (max-width: 868px) {
+  
+  .container-input {
+      width: 100%;
+
+  }
+}
