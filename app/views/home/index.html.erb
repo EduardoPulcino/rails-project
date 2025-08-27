@@ -1,17 +1,12 @@
-<%= render "shared/header" %> 
+<%= render "shared/header" %>
 
-<% if user_signed_in? %>
-	<h1> Olá, <%= current_user.name %> </h1>
-	<div>
-		<% if current_user.photo.attached? %>
-			<%= image_tag current_user.photo, style: "height: 300px; width: auto;"  %>
-		<% else %>
-			<p> sem foto </p>
-		<% end %>
-	</div>
-	<%= button_to 'Logout', destroy_user_session_path, method: :delete %>
-<% else %>
-	<h1> Bem vindo! Faça login para continuar </h1>
-	<%= link_to 'Login', new_user_session_path %>
-	<%= link_to 'Login com Google', user_google_oauth2_omniauth_authorize_path, method: :post %>
-<% end %>
+<div class="containerBanner">
+	<%= render "slideshow_home" %>
+</div>
+<div class="container">
+	<%= render "events" %>
+	<%= render "steps" %>
+  <%= render "faq" %>
+</div>
+
+<%= render "shared/footer" %>

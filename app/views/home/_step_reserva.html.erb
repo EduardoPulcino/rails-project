@@ -1,0 +1,28 @@
+<div data-controller="step-reserva" class="step-reserva-wrapper">
+  <div class="step-reserva-container" data-step-reserva-target="container">
+    <% [1,2,3].each do |num| %>
+      <% if num == 1 %>
+        <div class="linha linha-ativa primeira"></div>
+      <% end %>
+
+      <button 
+        type="button"
+        class="passo"
+        data-action="click->step-reserva#change"
+        data-step-reserva-num-value="<%= num %>"
+      >
+        <%= num %>
+      </button>
+
+      <% if num != 3 %>
+        <div class="linha"></div>
+      <% else %>
+        <div class="linha ultima"></div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="mensagem-passo" data-step-reserva-target="mensagem">
+    <p></p>
+  </div>
+</div>

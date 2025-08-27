@@ -1,0 +1,24 @@
+<div class="swiper-container" data-slideshow-target="container">
+    <div class="swiper-wrapper">
+      <% images = [
+        {img: "casamento.jpg",   tipo: "Casamento",       descricao: "Uma celebração de amor inesquecível."},
+        {img: "debutante.jpg",   tipo: "Debutante",       descricao: "Uma festa cheia de glamour e emoção."},
+        {img: "decoracao4.jpg",  tipo: "Infantil",        descricao: "Diversão e alegria para as crianças!"},
+        {img: "coffebreak.jpeg", tipo: "Coffe Break",     descricao: "Delícias variadas em um momento especial."},
+        {img: "aniversario.webp",tipo: "Aniversário",     descricao: "Comemoração inesquecível entre amigos."},
+        {img: "piscina.jpg",     tipo: "Aluguel do espaço", descricao: "Espaço completo para qualquer evento."}
+      ] %>
+
+      <% images.each do |img| %>
+        <div class="swiper-slide">
+          <div class="item" style="min-width:280px">
+            <%= image_tag img[:img], alt: img[:tipo] %>
+            <div class="infoEvento">
+              <h3><%= img[:tipo] %></h3>
+              <p class="descricao"><%= img[:descricao] %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>

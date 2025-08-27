@@ -1,0 +1,19 @@
+.container-faq {
+    /* background: rgb(54,70,82);
+    background: linear-gradient(90deg, #19222E 0%, #2F425B 80%, #1D2736 100%); */
+    width: 100%;
+    overflow: hidden;
+    padding: 0 0px 40px;
+    
+    box-sizing: border-box;
+}
+.hr-faq {
+    width: 25%;
+    height: 2px;
+    /* margin: 0 auto; */
+    background-color: #C54477;
+}
+.perguntas {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}

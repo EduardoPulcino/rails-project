@@ -1,0 +1,64 @@
+<header class="header">
+  <div class="container">
+    <%= link_to image_tag("CastrilloEventos.png", alt: "logo simone castrillo", class: "imgLogo"), root_path %>
+
+    <nav class="desktop">
+      <ul class="nav_links">
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "Lanches", "#Lanches" %></li>
+        <li><%= link_to "Salgados", "#Salgados" %></li>
+        <li><%= link_to "Bolos", "#Bolos" %></li>
+        <li><%= link_to "Doces", "#Doces" %></li>
+      </ul>
+    </nav>
+
+    <div class="container_buttons desktop">
+      <%= link_to "Solicitar Orçamento", "/solicitar-orcamento", class: "btn-default-bgRosa" %>
+
+      <% if !current_user %>
+        <%= link_to "Login", "/login", class: "btn-default-bgTransparent" %>
+      <% else %>
+        <%= link_to "/perfil/meus-dados", style: "display: flex; align-items: center; gap: 10px" do %>
+          <% if !current_user.photo.attached? %>
+            <%= image_tag "avatar.png", width: "30px", alt: "avatar" %>
+          <% else %>
+            <%= image_tag "data:image/jpeg;base64,#{@img_base64}", width: "30px", height: "30px", style: "border-radius: 100%", alt: "avatar" %>
+          <% end %>
+          <p style="color: white; font-weight: bold"><%= @usuario_nome %></p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <h2 class="titulo-principal" style="text-align: center">GASTRONOMIA</h2>
+  <div class="hr" style="margin: 0 auto"></div>
+  <p class="descricao" style="text-align: center">Eventos únicos para se divertir e conectar com quem você ama!</p>
+
+  <% @cards.each do |card| %>
+    <div id="<%= card[:titulo] %>" class="card <%= 'cardReverse' if card[:reverse] %>">
+      <% if card[:reverse] %>
+        <div class="detalhes">
+          <h2 class="tituloCard"><%= card[:titulo] %></h2>
+          <% card[:items].each do |item| %>
+            <p class="detalhesItemReverse"><%= item %></p>
+          <% end %>
+        </div>
+        <div class="imgCard">
+          <%= image_tag card[:img] %>
+        </div>
+      <% else %>
+        <div class="imgCard">
+          <%= image_tag card[:img] %>
+        </div>
+        <div class="detalhes">
+          <h2 class="tituloCard"><%= card[:titulo] %></h2>
+          <% card[:items].each do |item| %>
+            <p class="detalhesItem"><%= item %></p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</section>

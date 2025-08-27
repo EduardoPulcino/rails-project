@@ -1,0 +1,33 @@
+.container {
+    padding: 0 80px;
+    background: rgb(54,70,82);
+    background: linear-gradient(90deg, #19222E 0%, #2F425B 80%, #1D2736 100%);
+
+}
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 0 40px;
+    }
+    
+}
+@media screen and (max-width: 700px) {
+    .containerBanner {
+        display: none !important;
+    }
+    
+}
+@media screen and (max-width: 468px) {
+    .container {
+        padding: 0 30px;
+    }
+    
+}
+.containerBanner {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(54,70,82);
+    background: linear-gradient(90deg, #19222E 0%, #2F425B 80%, #1D2736 100%);
+    height: 90vh;
+}

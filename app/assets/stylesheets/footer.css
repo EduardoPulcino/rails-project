@@ -1,0 +1,54 @@
+.container-footer {
+    background: rgb(54,70,82);
+    background: linear-gradient(90deg, #5F2139 0%, #A23862 73%, #5F2139 100%);
+    width: 100%;
+    overflow: hidden;
+    padding: 30px 50px;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+.container-footer img {
+    width: 130px;
+}
+.lista_redes {
+    display: flex;
+    margin: 10px 0 0 0 ;
+    padding: 5px;
+    gap: 15px;
+    list-style: none;
+}
+
+@media screen and (max-width: 900px) {
+    
+    .container-footer {
+        gap: 30px;
+        flex-direction: column;
+        /* align-items: center; */
+        /* justify-content: center; */
+    }
+    
+}
+@media screen and (max-width: 650px) {
+    .containerNav {
+        flex-direction: column;
+        gap: 30px !important;
+        
+    }
+    
+}
+.containerNav {
+    display: flex;
+    gap: 90px;
+}
+.containerNav .links {
+    list-style: none;
+    /* margin: 0; */
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.containerNav h3 {
+    color: #fff;
+}

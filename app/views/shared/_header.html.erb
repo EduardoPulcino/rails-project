@@ -1,5 +1,5 @@
 <header class="header">
-	<div class="container">
+	<div class="header-container">
 
 		<%= link_to image_tag("CastrilloEventos.png", alt: "logo simone castrillo", class: "imgLogo"), root_path %>
 			<nav class="desktop">
@@ -17,11 +17,7 @@
 					<%= link_to "Login", new_user_session_path, class: "btn-default-bgTransparent" %>
 				<% else %>
 					<%= link_to edit_user_password_path, style: "display:flex; align-items:center; gap:10px;" do %>
-						<% if current_user.photo.attached? %>
-							<%= image_tag current_user.photo, width: 50, alt: "avatar" %>
-						<% else %>
-							<%= image_tag "avatar.png" , width: 30, height: 30, style: "border-radius:100%;", alt: "avatar" %>
-						<% end %>
+						<%= image_tag (current_user.photo.attached? ? "avatar.png" : "avatar.png"), width: 50 %>
 						<p style="color:white; font-weight:bold;"><%= current_user.name %></p>
 					<% end %>
 				<% end %>

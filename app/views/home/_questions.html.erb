@@ -1,0 +1,13 @@
+<div data-controller="questions" class="pergunta">
+  <div class="box naoAtivo" data-questions-target="box">
+    <h3 class="titulo"><%= titulo %></h3>
+    <button type="button" data-action="click->questions#toggle">
+      <span data-questions-target="iconeFechado">▼</span>
+      <span data-questions-target="iconeAberto" class="hidden">▲</span>
+    </button>
+  </div>
+
+  <div class="boxResposta hidden" data-questions-target="resposta">
+    <p><%= resposta %></p>
+  </div>
+</div>

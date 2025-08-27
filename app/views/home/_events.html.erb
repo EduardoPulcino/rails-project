@@ -1,0 +1,25 @@
+<div id="eventos" class="container-events" data-controller="slideshow">
+  <div class="colTituloButton">
+    <div class="tituloEventos">
+      <h2 class="titulo-principal">EVENTOS</h2>
+      <div class="hr-events"></div>
+      <p class="descricao">Eventos únicos para se divertir e conectar com quem você ama!</p>
+    </div>
+
+    <div class="containerButtons">
+      <%= button_tag class: 'btn-default-bgTransparent arrow hoverRosa',
+                     type: 'button',
+                     data: { slideshow_target: 'prev' } do %>
+        <%= image_tag "icons/arrow-back.svg", size: "20x20", class: "text-rosa" %>
+      <% end %>
+
+      <%= button_tag class: 'btn-default-bgRosa arrow',
+                     type: 'button',
+                     data: { slideshow_target: 'next' } do %>
+        <%= image_tag "icons/arrow-forward.svg", size: "20x20", class: "text-white" %>
+      <% end %>
+    </div>
+  </div>
+
+  <%= render 'slideshow_events' %>
+</div>

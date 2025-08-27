@@ -1,0 +1,127 @@
+.container1 {
+    background: rgb(54,70,82);
+    background: linear-gradient(90deg, #19222E 0%, #2F425B 80%, #1D2736 100%);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+  }
+  
+  .Banner {
+    height: 100vh;
+  }
+  
+  .containerBanner {
+    background-image: url("../../assets/Background\ -\ Login.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 50%;
+    height: 100vh;
+  }
+  .containerLogo {
+    display: flex;
+    align-items: center;
+    height:100%;
+    justify-content: center;
+}
+  .containerGeral {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto ;
+  }
+  .logoBuffet {
+    width: 400px;
+  }
+  .container {
+    
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .titulo {
+    margin: 10px 0 0;
+    font-weight: bold;
+    text-align: center;
+    font-size: 60px;
+    color: #FFB6C1;
+  }
+  
+  span {
+    color: white;
+  }
+  
+  .link {
+    color: #FFB6C1;
+    text-decoration: underline;
+  }
+  
+  /* @media screen and (max-width: 500px) {
+    .titulo {
+      font-size: 40px;
+    }
+  }
+  
+  @media screen and (max-width: 380px) {
+    .titulo {
+      font-size: 20px;
+    }
+  } */
+
+  .containerInputs {
+    width: 100%;
+    margin: 40px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.containerInputs input {
+  width: calc(100% - 20px);
+}
+.form {
+  width: 80%;
+}
+.btnEntrar {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.containerInputs label {
+    display: block;
+    width: 100%; 
+    text-align: center; 
+    font-size: 16px;
+    margin-top: 20px;
+    
+}
+
+
+.container-inputs input:focus {
+    border-color: hsl(211, 100%, 50%);
+    outline: none;
+}
+
+.error {
+  text-align: center;
+    color: #FFB6C1;
+    font-size: 14px;
+    margin-top: 10px;
+}
+@media screen and (max-width: 888px){
+  .logoBuffet {
+      width: 300px;
+  }
+  .form {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 668px){
+  .containerBanner {
+      display: none;
+  }
+  .containerGeral {
+      width: 100%;
+  }
+}

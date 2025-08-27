@@ -1,0 +1,50 @@
+<footer class="container-footer">
+  <div class="containerNav">
+    <div>
+      <%= image_tag "Matriz (1).png", alt: "" %>
+      <ul class="lista_redes">
+        <li><%= link_to "#", target: "_blank" do %><i class="fa fa-facebook"></i><% end %></li>
+        <li><%= link_to "#", target: "_blank" do %><i class="fa fa-instagram"></i><% end %></li>
+        <li><%= link_to "#", target: "_blank" do %><i class="fa fa-whatsapp"></i><% end %></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>EVENTOS</h3>
+      <ul class="links">
+        <li><%= link_to "Aniversário", "/evento/aniversário", class: "descricao" %></li>
+        <li><%= link_to "Casamento", "/evento/casamento", class: "descricao" %></li>
+        <li><%= link_to "Coffe Break", "/evento/coffe-break", class: "descricao" %></li>
+        <li><%= link_to "Debutante", "/evento/debutante", class: "descricao" %></li>
+        <li><%= link_to "Infantil", "/evento/infantil", class: "descricao" %></li>
+        <li><%= link_to "Aluguel", "/evento/aluguel-do-espaco", class: "descricao" %></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>SERVIÇOS</h3>
+      <ul class="links">
+        <li><%= link_to "Solicitar orçamento", new_budget_path, class: "descricao" %></li>
+        <li><%= link_to "Entrar", new_user_session_path, class: "descricao" %></li>
+        <li><%= link_to "Cadastrar", new_user_registration_path, class: "descricao" %></li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="width: 254px; height: 400px;">
+    <!-- Substitui o componente React Mapbox por um iframe -->
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.75828236564!2d-46.78806700381357!3d-23.668215140977676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce53528978c4ab%3A0x4b7c6f6b55f94f4!2sR.%20Gen.%20Ribamar%20de%20Miranda%2C%20330%20-%20Parque%20Fernanda%2C%20S%C3%A3o%20Paulo!5e0!3m2!1spt-BR!2sbr!4v1692816000000!5m2!1spt-BR!2sbr"
+      width="254"
+      height="320"
+      style="border-radius:10px; border:0;"
+      allowfullscreen=""
+      loading="lazy">
+    </iframe>
+
+    <p class="descricao" style="text-align:center;">
+      R. Gen. Ribamar de Miranda, 330<br>
+      Parque Fernanda - São Paulo
+    </p>
+  </div>
+</footer>

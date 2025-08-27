@@ -1,6 +1,18 @@
+
 /*
+ *= require_self
+ *= require home
+ *= require slideshow_home
  *= require header
-*/
+ *= require steps
+ *= require events
+ *= require slideshow_events
+ *= require step_reserva
+ *= require faq
+ *= require questions
+ *= require footer
+ */
+
 
 body {
   margin: 0;

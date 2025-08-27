@@ -1,0 +1,18 @@
+.container-steps {
+    /* background: rgb(54,70,82);
+    background: linear-gradient(90deg, #19222E 0%, #2F425B 80%, #1D2736 100%); */
+    width: 100%;
+    overflow: hidden;
+    padding: 0 0 150px;
+    
+    box-sizing: border-box;
+}
+.ajuste_titulo,.ajuste_descricao {
+    text-align: center;
+}
+.hr {
+    width: 25%;
+    height: 2px;
+    margin: 0 auto;
+    background-color: #C54477;
+}
