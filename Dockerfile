@@ -1,7 +1,8 @@
 FROM ruby:3.2.1
 
-RUN apt update -y
-RUN apt upgrade -y
+RUN apt-get update -y && \
+    apt-get upgrade -y --fix-missing
+
 RUN apt install lsb-base lsb-release
 
 RUN apt install curl ca-certificates
@@ -28,4 +29,3 @@ ADD . /home/app/web
 WORKDIR /home/app/web
 
 RUN bundle install --jobs 5 --retry 5
-
