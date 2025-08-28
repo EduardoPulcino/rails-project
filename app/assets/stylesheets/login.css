@@ -10,7 +10,7 @@
     height: 100vh;
   }
   
-  .containerBanner {
+  .containerBanner-login {
     background-image: url("../../assets/Background\ -\ Login.svg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -32,7 +32,7 @@
   .logoBuffet {
     width: 400px;
   }
-  .container {
+  .container-login {
     
     padding: 40px;
     display: flex;
@@ -40,7 +40,7 @@
     align-items: center;
   }
   
-  .titulo {
+  .titulo-login {
     margin: 10px 0 0;
     font-weight: bold;
     text-align: center;
@@ -58,13 +58,13 @@
   }
   
   /* @media screen and (max-width: 500px) {
-    .titulo {
+    .titulo-login {
       font-size: 40px;
     }
   }
   
   @media screen and (max-width: 380px) {
-    .titulo {
+    .titulo-login {
       font-size: 20px;
     }
   } */
@@ -118,7 +118,7 @@
   }
 }
 @media screen and (max-width: 668px){
-  .containerBanner {
+  .containerBanner-login {
       display: none;
   }
   .containerGeral {

@@ -11,6 +11,8 @@
  *= require faq
  *= require questions
  *= require footer
+ *= require login
+ *= require btn_back
  */
 
 
