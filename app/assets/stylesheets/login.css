@@ -1,90 +1,94 @@
 .container1 {
-    background: rgb(54,70,82);
-    background: linear-gradient(90deg, #19222E 0%, #2F425B 80%, #1D2736 100%);
-    width: 100%;
-    height: 100vh;
-    display: flex;
-  }
-  
-  .Banner {
-    height: 100vh;
-  }
-  
-  .containerBanner-login {
-    background-image: url("../../assets/Background\ -\ Login.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 50%;
-    height: 100vh;
-  }
-  .containerLogo {
-    display: flex;
-    align-items: center;
-    height:100%;
-    justify-content: center;
+  background: rgb(54,70,82);
+  background: linear-gradient(90deg, #19222E 0%, #2F425B 80%, #1D2736 100%);
+  width: 100%;
+  height: 100vh;
+  display: flex;
 }
-  .containerGeral {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto ;
-  }
-  .logoBuffet {
-    width: 400px;
-  }
-  .container-login {
-    
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
   
-  .titulo-login {
-    margin: 10px 0 0;
-    font-weight: bold;
-    text-align: center;
-    font-size: 60px;
-    color: #FFB6C1;
-  }
+.Banner {
+  height: 100vh;
+}
   
-  span {
-    color: white;
-  }
+.containerBanner-login {
+  background-image: url("../../assets/Background\ -\ Login.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 50%;
+  height: 100vh;
+}
+.containerLogo {
+  display: flex;
+  align-items: center;
+  height:100%;
+  justify-content: center;
+}
+.containerGeral {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto ;
+}
+.logoBuffet {
+  width: 400px;
+}
+.container-login {
   
-  .link {
-    color: #FFB6C1;
-    text-decoration: underline;
-  }
-  
-  /* @media screen and (max-width: 500px) {
-    .titulo-login {
-      font-size: 40px;
-    }
-  }
-  
-  @media screen and (max-width: 380px) {
-    .titulo-login {
-      font-size: 20px;
-    }
-  } */
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .containerInputs {
-    width: 100%;
-    margin: 40px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.titulo-login {
+  margin: 10px 0 0;
+  font-weight: bold;
+  text-align: center;
+  font-size: 60px;
+  color: #FFB6C1;
+}
+
+span {
+  color: white;
+}
+
+.link {
+  color: #FFB6C1;
+  text-decoration: underline;
+}
+
+/* @media screen and (max-width: 500px) {
+  .titulo-login {
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .titulo-login {
+    font-size: 20px;
+  }
+} */
+
+.containerInputs {
+  width: 50%;
+  margin: 40px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .containerInputs input {
   width: calc(100% - 20px);
 }
 .form {
   width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .btnEntrar {
-  width: 100%;
+  width: 50%;
   margin-bottom: 20px;
 }
 
@@ -95,6 +99,54 @@
     font-size: 16px;
     margin-top: 20px;
     
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.checkbox {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #888;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.checkbox:checked {
+  background-color: #FFB6C1;
+  border-color: #FFB6C1;
+}
+
+.checkbox:checked::after {
+  content: "✔";
+  color: #C54477;
+  font-size: 12px;
+}
+
+.checkbox:hover {
+  border-color: #4f46e5;
+}
+
+.teste {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+  align-items: center;
+}
+.teste br {
+  display: none; /* remove quebras de linha do Devise */
 }
 
 
@@ -118,10 +170,10 @@
   }
 }
 @media screen and (max-width: 668px){
-  .containerBanner-login {
-      display: none;
-  }
-  .containerGeral {
-      width: 100%;
-  }
+.containerBanner-login {
+    display: none;
+}
+.containerGeral {
+    width: 100%;
+}
 }

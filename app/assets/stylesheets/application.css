@@ -40,7 +40,7 @@ button {
   background-color: #C54477;
   padding: 11.6px 20px;
   color: #fff;
-  border-radius: 50px;
+  border-radius: 8px;
   font-weight: bold;
 }
 
@@ -127,7 +127,7 @@ label {
 }
 input {
   padding: 8px 10px;
-  border-radius: 16px;
+  border-radius: 8px;
   font-family: 'Montserrat', sans-serif;
   /* color: #454545; */
   background-color: #ffffff16;
