@@ -14,6 +14,7 @@ module AppRailsLearn
     config.generators do |g|
       g.factory_bot false
     end
+    config.i18n.default_locale = :'pt-BR'
 
     # Configuration for the application, engines, and railties goes here.
     #

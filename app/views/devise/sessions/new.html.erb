@@ -4,11 +4,6 @@
     <div class="container-login">
       <h1 class="titulo-login" >LOGIN</h1>
 
-      <span>
-        Não possui uma conta?
-        <%= link_to "Cadastre-se.", new_user_registration_path, class: "link" %>
-      </span>
-
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form" }) do |f| %>
         <div class="containerInputs">
           <%= f.label :email, class: "label" %><br />
@@ -19,18 +14,18 @@
         </div>
 
         <% if devise_mapping.rememberable? %>
-          <div>
-            <%= f.check_box :remember_me %>
+          <div class="remember-me">
+            <%= f.check_box :remember_me, class: "checkbox" %>
             <%= f.label :remember_me %>
           </div>
         <% end %>
 
-        <div class="actions">
-          <%= f.submit "Entrar", class: "btn-default-bgRosa btnEntrar" %>
+        <%= f.submit t(".sign_in"), class: "btn-default-bgRosa btnEntrar" %>
+
+        <div class="teste">
+          <%= render "devise/shared/links" %>
         </div>
       <% end %>
-
-      <%= render "devise/shared/links" %>
     </div>
   </div>
 
