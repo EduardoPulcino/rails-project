@@ -6,6 +6,10 @@
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form" }) do |f| %>
         <div class="containerInputs">
+          <% if flash[:alert].present? %>
+            <p class="error"><%= flash[:alert] %></p>
+          <% end %>
+
           <%= f.label :email, class: "label" %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
 
@@ -16,7 +20,7 @@
         <% if devise_mapping.rememberable? %>
           <div class="remember-me">
             <%= f.check_box :remember_me, class: "checkbox" %>
-            <%= f.label :remember_me %>
+            <%= f.label :remember_me, t(".remember_me") %>
           </div>
         <% end %>
 

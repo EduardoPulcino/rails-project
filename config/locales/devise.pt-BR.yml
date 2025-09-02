@@ -49,6 +49,7 @@ pt-BR:
       already_signed_out: "Saiu com sucesso."
       new:
         sign_in: "Entrar"
+        remember_me: "Manter-me conectado"
     shared:
       links:
         sign_up: "Cadastre-se"
