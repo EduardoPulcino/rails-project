@@ -7,6 +7,9 @@ import { application } from "./application"
 import EventsController from "./events_controller"
 application.register("events", EventsController)
 
+import MaskController from "./mask_controller"
+application.register("mask", MaskController)
+
 import QuestionsController from "./questions_controller"
 application.register("questions", QuestionsController)
 
