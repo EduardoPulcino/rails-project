@@ -117,6 +117,10 @@ span{
     color: #FFB6C1;
 }
 
+.shared-link-sign-up {
+    text-align: center;
+}
+
 @media screen and (max-width : 500px) {
     .titulo-sign-up {
         font-size: 40px;
