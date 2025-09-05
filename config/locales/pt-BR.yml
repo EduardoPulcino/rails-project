@@ -1,7 +1,41 @@
 pt-BR:
   activerecord:
+    models:
+      user: "Usuário"
+      budget: "Orçamento"
     attributes:
       user:
         email: "E-mail"
         password: "Senha"
+        password_confirmation: "Confirme sua senha"
+        name: "Nome"
+        phone: "Telefone"
+        role: "Permissão"
+      budget:
+        event_date: "Data do evento"
 
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      wrong_length: "é inválido"
+      blank: "não pode ficar em branco"
+      taken: "já está em uso"
+      invalid: "não é válido"
+      confirmation: "não coincide"
+      too_short:
+        one: "é muito curto (mínimo: %{count} caractere)"
+        other: "é muito curto (mínimo: %{count} caracteres)"
+
+    models:
+      user:
+        attributes:
+          phone:
+            wrong_length: "é inválido"
+          email:
+            taken: "já está em uso"
+          password:
+            too_short:
+              one: "é muito curta (mínimo: %{count} caractere)"
+              other: "é muito curta (mínimo: %{count} caracteres)"
+          password_confirmation:
+            confirmation: "não coincide com a senha"

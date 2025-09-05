@@ -1,0 +1,151 @@
+.container1-sign-up {
+    background: rgb(54,70,82);
+    background: linear-gradient(-90deg, #19222E 0%, #2F425B 80%, #1D2736 100%);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+.Banner{
+    height: 100vh;
+}
+
+
+.containerBanner-sign-up{
+    background-image: url("../../assets/Background\ -\ Login.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 50%;
+    height: 100vh;
+}
+.containerLogo-sign-up {
+    display: flex;
+    align-items: center;
+    height:80%;
+    justify-content: center;
+}
+   
+
+
+.containerGeral-sign-up {
+    padding: 0 90px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+.container-sign-up {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
+.titulo-sign-up {
+    margin: 10px 0 0;
+    font-weight: bold;
+    text-align: center;
+    font-size: 60px;
+    color: #FFB6C1;
+    
+}
+
+.form-sign-up {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 60px 0 20px;
+    border-radius: 8px;
+}
+
+.containerInputs-sign-up {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+}
+
+.containerInputs-sign-up label {
+    display: block;
+    width: 100%; 
+    text-align: center; 
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+
+#error_explanation {
+  background-color: #fdecea;   /* fundo vermelho claro */
+  border: 1px solid #f5c2c7;   /* borda suave */
+  color: #b00020;              /* texto vermelho escuro */
+  padding: 1rem;               /* espaço interno */
+  margin: 1rem 0;              /* espaço externo */
+  border-radius: 8px;          /* cantos arredondados */
+}
+
+#error_explanation h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+#error_explanation ul {
+  margin: 0;
+  padding-left: 1.5rem;        /* espaçamento da lista */
+}
+
+#error_explanation li {
+  margin-bottom: 0.3rem;
+  list-style: none;
+}
+
+.field-error {
+  color: #d00;
+  font-size: 0.9em;
+  margin-top: 4px;
+  width: 100%;
+  text-align: center;
+}
+
+span{
+    color: white;
+}
+
+.link{
+    color: #FFB6C1;
+}
+
+.shared-link-sign-up {
+    text-align: center;
+}
+
+@media screen and (max-width : 500px) {
+    .titulo-sign-up {
+        font-size: 40px;
+    }
+}
+@media screen and (max-width : 380px) {
+    .titulo-sign-up {
+        font-size: 20px;
+    }
+    
+}
+.logoBuffet {
+    width: 400px;
+}
+@media screen and (max-width: 888px){
+    .logoBuffet {
+        width: 300px;
+    }
+    
+}
+@media screen and (max-width: 768px){
+    .containerBanner {
+        display: none;
+    }
+    .containerGeral {
+        width: 100%;
+    }
+}

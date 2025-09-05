@@ -6,10 +6,12 @@ class User < ApplicationRecord
 
 	enum role: { admin: 'ADMIN', user: 'USER' }
 
+  before_validation :normalize_phone
+
 	validates :name, presence: true
 	validates :email, presence: true, uniqueness: true
 	validates :password, presence: true
-	validates :phone, presence: true, uniqueness: true
+	validates :phone, presence: true, uniqueness: true, length: { is: 11 }
 
 	has_one_attached :photo
 	has_many :budgets
@@ -17,6 +19,10 @@ class User < ApplicationRecord
 	def admin?
 		self.role == 'admin'
 	end
+
+  def normalize_phone
+    self.phone = phone.to_s.gsub(/\D/, "")
+  end
 
 	def self.from_omniauth(auth)
 		user = User.find_or_create_by(uid: auth.uid, provider: auth.provider)
