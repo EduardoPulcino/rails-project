@@ -19,7 +19,10 @@
           <%= field_error(resource, :name) %>
 
           <%= f.label :phone %>
-          <%= f.telephone_field :phone %>
+          <%= f.telephone_field :phone,
+                inputmode: "numeric",
+                data: { controller: "mask" }
+          %>
           <%= field_error(resource, :phone) %>
 
           <%= f.label :email %>
