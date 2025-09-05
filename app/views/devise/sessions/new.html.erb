@@ -6,10 +6,6 @@
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form" }) do |f| %>
         <div class="containerInputs">
-          <% if flash[:alert].present? %>
-            <p class="error"><%= flash[:alert] %></p>
-          <% end %>
-
           <%= f.label :email, class: "label" %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
 
@@ -24,9 +20,13 @@
           </div>
         <% end %>
 
+          <% if flash[:alert].present? %>
+            <p class="error"><%= flash[:alert] %></p>
+          <% end %>
+
         <%= f.submit t(".sign_in"), class: "btn-default-bgRosa btnEntrar" %>
 
-        <div class="teste">
+        <div class="shared-link-login">
           <%= render "devise/shared/links" %>
         </div>
       <% end %>

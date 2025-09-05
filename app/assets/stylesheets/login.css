@@ -139,13 +139,13 @@ span {
   border-color: #4f46e5;
 }
 
-.teste {
+.shared-link-login {
   display: flex;
   width: 50%;
   justify-content: space-between;
   align-items: center;
 }
-.teste br {
+.shared-link-login br {
   display: none; /* remove quebras de linha do Devise */
 }
 
@@ -159,7 +159,8 @@ span {
   text-align: center;
     color: #FFB6C1;
     font-size: 14px;
-    margin-top: 10px;
+    margin-bottom: 20px;
+
 }
 @media screen and (max-width: 888px){
   .logoBuffet {
