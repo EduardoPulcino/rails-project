@@ -19,9 +19,10 @@ Rails.application.routes.draw do
     end
 
   resources :reviews
-
   resources :decorations
+  resource :user, only: [:show, :edit, :update]
   get '/decorations/by_event_type_id/:event_type_id', to: 'decorations#by_event_type_id', as: 'by_event_type_id'
+  get '/menu', to: 'menu#menu'
 
   root 'home#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

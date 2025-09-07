@@ -1,64 +1,100 @@
-<header class="header">
-  <div class="container">
-    <%= link_to image_tag("CastrilloEventos.png", alt: "logo simone castrillo", class: "imgLogo"), root_path %>
-
-    <nav class="desktop">
-      <ul class="nav_links">
-        <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "Lanches", "#Lanches" %></li>
-        <li><%= link_to "Salgados", "#Salgados" %></li>
-        <li><%= link_to "Bolos", "#Bolos" %></li>
-        <li><%= link_to "Doces", "#Doces" %></li>
-      </ul>
-    </nav>
-
-    <div class="container_buttons desktop">
-      <%= link_to "Solicitar Orçamento", "/solicitar-orcamento", class: "btn-default-bgRosa" %>
-
-      <% if !current_user %>
-        <%= link_to "Login", "/login", class: "btn-default-bgTransparent" %>
-      <% else %>
-        <%= link_to "/perfil/meus-dados", style: "display: flex; align-items: center; gap: 10px" do %>
-          <% if !current_user.photo.attached? %>
-            <%= image_tag "avatar.png", width: "30px", alt: "avatar" %>
-          <% else %>
-            <%= image_tag "data:image/jpeg;base64,#{@img_base64}", width: "30px", height: "30px", style: "border-radius: 100%", alt: "avatar" %>
-          <% end %>
-          <p style="color: white; font-weight: bold"><%= @usuario_nome %></p>
-        <% end %>
+<div>
+  <header class="header-menu">
+    <div class="container-menu">
+      <%= link_to root_path do %>
+        <%= image_tag "CastrilloEventos.png", alt: "logo simone castrillo", class: "imgLogo" %>
       <% end %>
+
+      <!-- Menu desktop -->
+      <nav class="desktop">
+        <ul class="nav_links">
+          <li><%= link_to "Home", root_path, class: "active" %></li>
+          <li><%= link_to "Lanches", "#Lanches" %></li>
+          <li><%= link_to "Salgados", "#Salgados" %></li>
+          <li><%= link_to "Bolos", "#Bolos" %></li>
+          <li><%= link_to "Doces", "#Doces" %></li>
+        </ul>
+      </nav>
+
+      <!-- Botões -->
+      <div class="container_buttons desktop">
+        <%= link_to "Solicitar Orçamento", new_budget_path, class: "btn-default-bgRosa" %>
+        <% if user_signed_in? %>
+          <%= link_to perfil_meus_dados_path, style: "display: flex; align-items: center; gap: 10px;" do %>
+            <% if current_user.foto.present? %>
+              <%= image_tag current_user.foto, alt: "avatar", width: "30", height: "30", style: "border-radius: 100%;" %>
+            <% else %>
+              <%= image_tag "Avatar.png", alt: "avatar", width: "30" %>
+            <% end %>
+            <p style="color: white; font-weight: bold;"><%= current_user.nome %></p>
+          <% end %>
+        <% else %>
+          <%= link_to "Login", new_user_session_path, class: "btn-default-bgTransparent" %>
+        <% end %>
+      </div>
+    </div>
+  </header>
+
+  <div class="section">
+    <h2 class="titulo-principal" style="text-align:center;">GASTRONOMIA</h2>
+    <div class="hr" style="margin: 0 auto;"></div>
+    <p class="descricao" style="text-align:center;">
+      Eventos únicos para se divertir e conectar com quem você ama!
+    </p>
+
+    <!-- Cards -->
+    <div id="Lanches" class="card">
+      <div class="imgCard"><%= image_tag "lanches.webp" %></div>
+      <div class="detalhes">
+        <h2 class="tituloCard">Lanches</h2>
+        <p class="detalhesItem">Mini Hot Dog</p>
+        <p class="detalhesItem">Mini Hamburguer</p>
+        <p class="detalhesItem">Mini Calabresa</p>
+        <p class="detalhesItem">Mini Carne louca</p>
+      </div>
+    </div>
+
+    <div id="Salgados" class="card cardReverse">
+      <div class="detalhes">
+        <h2 class="tituloCard">Salgados</h2>
+        <p class="detalhesItemReverse">Mini kibe</p>
+        <p class="detalhesItemReverse">Risole de pizza</p>
+        <p class="detalhesItemReverse">Coxinha de frango</p>
+        <p class="detalhesItemReverse">Bolinho de queijo</p>
+        <p class="detalhesItemReverse">Esfiha de carne</p>
+        <p class="detalhesItemReverse">Empadinhas de palmito</p>
+      </div>
+      <div class="imgCard"><%= image_tag "Salvagos.jpeg" %></div>
+    </div>
+
+    <div id="Bolos" class="card">
+      <div class="imgCard"><%= image_tag "bolos.jpeg" %></div>
+      <div class="detalhes">
+        <h2 class="tituloCard">Bolos</h2>
+        <p class="detalhesItem">Creme Mestre com pêssego</p>
+        <p class="detalhesItem">Prestígio</p>
+        <p class="detalhesItem">Abacaxi</p>
+        <p class="detalhesItem">Doce de leite com coco</p>
+        <p class="detalhesItem">Doce de leite com ameixa</p>
+        <p class="detalhesItem">Mousse de morango</p>
+        <p class="detalhesItem">Bolo Ninho</p>
+        <p class="detalhesItem">Ninho com morango</p>
+        <p class="detalhesItem">e Muito Mais!</p>
+      </div>
+    </div>
+
+    <div id="Doces" class="card cardReverse">
+      <div class="detalhes">
+        <h2 class="tituloCard">Doces</h2>
+        <p class="detalhesItemReverse">Brigadeiro tradicionais</p>
+        <p class="detalhesItemReverse">Brigadeiro crocante</p>
+        <p class="detalhesItemReverse">Brigadeiro de morango</p>
+        <p class="detalhesItemReverse">Cajuzinho</p>
+        <p class="detalhesItemReverse">Beijinhos</p>
+      </div>
+      <div class="imgCard"><%= image_tag "doces.webp" %></div>
     </div>
   </div>
-</header>
 
-<section class="section">
-  <h2 class="titulo-principal" style="text-align: center">GASTRONOMIA</h2>
-  <div class="hr" style="margin: 0 auto"></div>
-  <p class="descricao" style="text-align: center">Eventos únicos para se divertir e conectar com quem você ama!</p>
-
-  <% @cards.each do |card| %>
-    <div id="<%= card[:titulo] %>" class="card <%= 'cardReverse' if card[:reverse] %>">
-      <% if card[:reverse] %>
-        <div class="detalhes">
-          <h2 class="tituloCard"><%= card[:titulo] %></h2>
-          <% card[:items].each do |item| %>
-            <p class="detalhesItemReverse"><%= item %></p>
-          <% end %>
-        </div>
-        <div class="imgCard">
-          <%= image_tag card[:img] %>
-        </div>
-      <% else %>
-        <div class="imgCard">
-          <%= image_tag card[:img] %>
-        </div>
-        <div class="detalhes">
-          <h2 class="tituloCard"><%= card[:titulo] %></h2>
-          <% card[:items].each do |item| %>
-            <p class="detalhesItem"><%= item %></p>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-</section>
+  <%= render "shared/footer" %>
+</div>

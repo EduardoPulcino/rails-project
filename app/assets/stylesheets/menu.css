@@ -1,0 +1,137 @@
+.header-menu {
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+    top: 0;   
+    display: flex;
+    height: 96px;
+    background: rgb(54,70,82);
+    background: linear-gradient(90deg, #19222E 0%, #2F425B 80%, #1D2736 100%);
+}
+.container-menu {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.imgLogo {
+    width: 100px;
+}
+.nav_links {
+    display: flex;
+    gap: 20px;
+}
+.nav_links_mobile {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+    flex-direction: column;
+}
+.nav_links li {
+    color: #fff;
+    list-style: none;
+}
+.container-menu_buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.active {
+    font-weight: bold;
+    border-bottom: 2px solid #C54477;
+}
+.mobile {
+    display: none;
+}
+.menu_container {
+    position: absolute;
+    padding: 20px 40px 40px;
+    right: 0;
+    background: rgb(54,70,82);
+    background: linear-gradient(90deg, #243245 0%, #2F425B 62%, #1D2736 100%);
+}
+
+@media (max-width: 1000px) {
+    .desktop {
+        display: none;
+    }
+    .mobile {
+        display: block;
+    }
+    
+}
+.section {
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 80px 80px 20px;
+    background: rgb(54,70,82);
+    background: linear-gradient(90deg, #19222E 0%, #2F425B 80%, #1D2736 100%);
+    padding-bottom: 50px;
+
+}
+.hr {
+    width: 20%;
+    height: 2px;
+    margin: 0;
+    background-color: #C54477;
+}
+.detalhesItem {
+    font-weight: bold;
+    color: #fff;
+    margin: 5px 0;
+}
+.detalhesItemReverse {
+    font-weight: bold;
+    color: #fff;
+    margin: 10px 0;
+
+    text-align: right;
+}
+.card {
+    margin-top: 50px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    gap: 120px;
+}
+.imgCard {
+    width: 350px;
+    border-radius: 26px;
+    height: 250px;
+    background-color: #ffffff52;
+}
+.imgCard img {
+    border-radius: 26px;
+
+    width: 100%;
+    height: 100%;
+}
+.tituloCard {
+    margin: 0;
+    font-size: 40px;
+    color: #FFB6C1;
+}
+@media screen and (max-width: 850px) {
+    .card {
+        gap: 20px;
+        flex-direction: column;
+    }
+    .cardReverse {
+        flex-direction: column-reverse;
+    }
+    .imgCard {
+        width: 100%;
+        height: 300px;
+    }
+    .tituloCard {
+        font-size: 30px;
+    }
+    .detalhesItemReverse {
+        text-align: start;
+    }
+    
+}
