@@ -1,0 +1,59 @@
+.container-grouped {
+    width: 100%;
+    margin: 90px auto 0;
+    padding: 0 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    background: linear-gradient(90deg, #19222E 0%, #2F425B 80%, #1D2736 100%);
+}
+
+.container-grouped h1 {
+    text-align: center;
+    font-size: 48px;
+    color: #FFB6C1;
+    margin: 40px 0 10px;
+}
+
+.hr-decoracao {
+    width: 30%;
+    height: 2px;
+    margin: 0;
+    background-color: #C54477;
+}
+
+.container-grouped h2 {
+    font-size: 32px;
+    color: #FFB6C1;
+    margin: 40px 0 10px;
+}
+
+.decorations img {
+    width: 280px;
+    margin-right: 52px;
+    margin-top: 28px;
+    height: 350px;
+    text-align: center;
+    position: relative;
+    background: rgba(255, 255, 255, 0.20);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+}
+
+.sem-decoraçao {
+    text-align: left;
+    background: transparent;
+    color: #C54477;
+}
+
+.title-link {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.sem-decoraçao p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}

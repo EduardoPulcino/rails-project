@@ -1,0 +1,32 @@
+<%= render "shared/header" %>
+
+<div class="container-grouped">
+  <div class="title-decorations">
+    <h1> Nossas decorações </h1>
+  </div>
+  <div class="hr-decoracao" style="margin: 0 auto;"></div>
+  <p class="descricao" style="text-align:center;">
+    Inspire-se em nossas decorações e escolha a sua favorita.
+  </p>
+  
+  <% @event_types.each do |type| %>
+    <div class="title-link"> 
+      <h2><%= type.name.upcase %></h1>
+      <%= link_to "Ver mais", specific_decorations_path(type.id), class: "link", style: "margin-top: 40px;" %>
+    </div>
+
+    <div class="decorations">
+      <% if type.decorations.empty? %>
+        <div class="sem-decoraçao">
+          <p> Sem decorações cadastradas </p>
+        </div>
+      <% else %>
+        <% type.decorations.each do |decoration| %>
+          <%= image_tag url_for(decoration.photo), alt: "Foto da decoração #{decoration.id}" %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<%= render "shared/footer"%>

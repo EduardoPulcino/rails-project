@@ -19,9 +19,13 @@ Rails.application.routes.draw do
     end
 
   resources :reviews
-  resources :decorations
+  resources :decorations do
+    collection do
+      get :grouped
+      get 'specific/:event_type_id', to: 'decorations#specific', as: 'specific'
+    end
+  end
   resource :user, only: [:show, :edit, :update]
-  get '/decorations/by_event_type_id/:event_type_id', to: 'decorations#by_event_type_id', as: 'by_event_type_id'
   get '/menu', to: 'menu#menu'
 
   root 'home#index'

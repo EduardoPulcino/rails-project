@@ -1,15 +1,19 @@
 class DecorationsController < ApplicationController
-  before_action :authenticate_user!, except: %i[ by_event_type_id index show ]
+  before_action :authenticate_user!, except: %i[ grouped index show ]
   before_action :set_decoration, only: %i[ show edit update destroy ]
   before_action :authenticate_admin, only: %i[ edit update destroy new create ]
 
-  def by_event_type_id
-    event_type_id = params[:event_type_id]
-
-    decorations = Decoration.find_by_event_type_id(event_type_id)
-
-    render json: decorations
+  def grouped
+    @event_types = EventType.includes(:decorations).all
   end
+
+  def specific
+    id = params[:event_type_id]
+    @event_type = EventType.find(id)
+
+    @decorations_specific = Decoration.find_by_event_type_id(id)
+  end
+
   # GET /decorations or /decorations.json
   def index
     @decorations = Decoration.all
