@@ -1,0 +1,22 @@
+<%= render "shared/header" %>
+
+<div class="container-specific">
+  <h1><%= @event_type.name %></h1>
+
+  <div class="decorations", style="margin-bottom: 32px;">
+    <% if @decorations_specific.any? %>
+      <% @decorations_specific.each do |decoration| %>
+        <div class="decoration-card">
+          <%= image_tag url_for(decoration.photo), alt: "Decoração", class: "decoration-img" %>
+          <div class="decoration-overlay">
+            <p><%= decoration.name %></p>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="sem-decoraçao">Sem decorações cadastradas</p>
+    <% end %>
+  </div>
+</div>
+
+<%= render "shared/footer" %>
