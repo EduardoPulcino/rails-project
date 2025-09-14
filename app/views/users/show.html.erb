@@ -1,0 +1,49 @@
+<div class=".header-my-data">
+  <h1 class="titulo-perfil">MEU PERFIL</h1>
+
+  <% if !@editando %>
+    <%= button_to "Editar", edit_user_path(@user), method: :get, class: "btn-default-bgRosa-perfil" %>
+  <% else %>
+    <div>
+      <%= button_to "Cancelar", user_path(@user), method: :get, class: "btn-default-bgTransparent-perfil", style: "margin-right: 10px" %>
+      <%= button_to "Salvar", user_path(@user), method: :patch, params: { user: @user }, class: "btn-default-bgRosa-perfil" %>
+    </div>
+  <% end %>
+</div>
+
+<% if @loading %>
+  <div style="text-align: center; margin-top: 100px;">
+    <%= image_tag "loading-gif.gif", width: "50px", alt: "loading" %>
+  </div>
+<% else %>
+  <div class="container-my-data">
+    <div class="imagemUsuario">
+      <%= image_tag(current_user.photo.present? ? current_user.photo.url : "imgPerfil.png", alt: "img de perfil") %>
+
+      <% if @editando %>
+        <%= button_to "#", class: "editar", data: { action: "abrir-modal-photo" } do %>
+          <i class="material-icons">edit</i>
+        <% end %>
+      <% end %>
+    </div>
+
+    <%= form_with(model: @user) do |f|%>
+
+      <div class="infoUsuario">
+        <div class="inputsLados">
+          <%= f.label :name, "name" %>
+          <%= f.text_field :name, value: current_user.name, disabled: !@editando %>
+
+          <%= f.label :email, "E-mail" %>
+          <%= f.email_field :email, value: current_user.email, disabled: !@editando %>
+        </div>
+
+        <div class="inputsLados">
+          <%= f.label :phone, "phone" %>
+          <%= f.telephone_field :phone, value: current_user.phone, disabled: !@editando %>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+<% end %>
