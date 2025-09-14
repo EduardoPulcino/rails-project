@@ -4,11 +4,12 @@
 		<%= link_to image_tag("CastrilloEventos.png", alt: "logo simone castrillo", class: "imgLogo"), root_path %>
 			<nav class="desktop">
 				<ul class="nav_links">
-					<li> <%= link_to "Home", "#bannerId" %> </li>
+					<li> <%= link_to "Home", root_path %> </li>
 					<li> <%= link_to "Eventos", "#events" %> </li>
 					<li> <%= link_to "Reservas", "#reservas" %> </li>
 					<li><%= link_to "Dúvidas", "#duvidas" %></li>
-        	<li><%= link_to "Gastronomia", root_path %></li>
+					<li><%= link_to "Decorações", grouped_decorations_path %></li>
+        			<li><%= link_to "Gastronomia", menu_path %></li>
 				</ul>
 			</nav>
 			<div class="container_buttons desktop" >
@@ -16,11 +17,13 @@
 				<% if !user_signed_in? %>
 					<%= link_to "Login", new_user_session_path, class: "btn-default-bgTransparent" %>
 				<% else %>
-					<%= link_to edit_user_password_path, style: "display:flex; align-items:center; gap:10px;" do %>
+					<%= link_to user_path, style: "display:flex; align-items:center; gap:10px;" do %>
 						<%= image_tag (current_user.photo.attached? ? "avatar.png" : "avatar.png"), width: 50 %>
 						<p style="color:white; font-weight:bold;"><%= current_user.name %></p>
 					<% end %>
 				<% end %>
 			</div>
+
+			<%= link_to "sair", destroy_user_session_path, method: :delete %>
 	</div>
 </header>

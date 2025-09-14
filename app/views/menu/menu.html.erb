@@ -5,7 +5,6 @@
         <%= image_tag "CastrilloEventos.png", alt: "logo simone castrillo", class: "imgLogo" %>
       <% end %>
 
-      <!-- Menu desktop -->
       <nav class="desktop">
         <ul class="nav_links">
           <li><%= link_to "Home", root_path, class: "active" %></li>
@@ -16,17 +15,16 @@
         </ul>
       </nav>
 
-      <!-- Botões -->
       <div class="container_buttons desktop">
         <%= link_to "Solicitar Orçamento", new_budget_path, class: "btn-default-bgRosa" %>
         <% if user_signed_in? %>
-          <%= link_to perfil_meus_dados_path, style: "display: flex; align-items: center; gap: 10px;" do %>
-            <% if current_user.foto.present? %>
-              <%= image_tag current_user.foto, alt: "avatar", width: "30", height: "30", style: "border-radius: 100%;" %>
+          <%= link_to user_path, style: "display: flex; align-items: center; gap: 10px;" do %>
+            <% if current_user.photo.attached? %>
+              <%= image_tag current_user.photo, alt: "avatar", width: "30", height: "30", style: "border-radius: 100%;" %>
             <% else %>
-              <%= image_tag "Avatar.png", alt: "avatar", width: "30" %>
+              <%= image_tag "avatar.png", alt: "avatar", width: "30" %>
             <% end %>
-            <p style="color: white; font-weight: bold;"><%= current_user.nome %></p>
+            <p style="color: white; font-weight: bold;"><%= current_user.name %></p>
           <% end %>
         <% else %>
           <%= link_to "Login", new_user_session_path, class: "btn-default-bgTransparent" %>
@@ -42,7 +40,6 @@
       Eventos únicos para se divertir e conectar com quem você ama!
     </p>
 
-    <!-- Cards -->
     <div id="Lanches" class="card">
       <div class="imgCard"><%= image_tag "lanches.webp" %></div>
       <div class="detalhes">
