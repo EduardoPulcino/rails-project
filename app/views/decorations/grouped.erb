@@ -22,7 +22,13 @@
         </div>
       <% else %>
         <% type.decorations.each do |decoration| %>
-          <%= image_tag url_for(decoration.photo), alt: "Foto da decoração #{decoration.id}" %>
+          <div class="decoration-card" tabindex="0">
+            <%= image_tag url_for(decoration.photo), alt: "Foto da decoração #{decoration.id}", class: "decoration-img" %>
+
+            <div class="decoration-overlay">
+              <div class="decoration-title"><%= decoration.name %></div>
+            </div>
+          </div>
         <% end %>
       <% end %>
     </div>
