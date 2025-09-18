@@ -1,0 +1,58 @@
+<div class="header-profile">
+  <div class="container-profile">
+    <%= link_to root_path do %>
+      <%= image_tag "Matriz (1).png", alt: "logo png" %>
+    <% end %>
+
+    <nav>
+      <ul>
+        <% if current_user&.role == "admin" %>
+          <li>
+            <%= link_to "Reservas", root_path,
+              class: ("active" if @componente_ativo == "reservas") %>
+          </li>
+          <li>
+            <%= link_to "Métricas", root_path,
+              class: ("active" if @componente_ativo == "metricas") %>
+          </li>
+          <li>
+            <%= link_to "Calendário", root_path,
+              class: ("active" if @componente_ativo == "calendario") %>
+          </li>
+          <li>
+            <%= link_to "Decorações", root_path,
+              class: ("active" if @componente_ativo == "decoracao") %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to "Minhas Reservas", root_path,
+              class: ("active" if @componente_ativo == "minhas-reservas") %>
+          </li>
+        <% end %>
+
+        <li>
+          <%= link_to "Meus dados", user_path,
+            class: ("active" if @componente_ativo == "meus-dados") %>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="user-info">
+      <i class="fa fa-bell" style="color: white; font-size: 18px;"></i>
+
+      <div class="user">
+        <% if current_user&.photo.present? %>
+          <%= image_tag current_user.photo, alt: "avatar", width: 50, style: "border-radius: 100%;" %>
+        <% else %>
+          <%= image_tag "avatar.png", alt: "avatar", width: 50 %>
+        <% end %>
+
+        <p><%= current_user&.name %></p>
+
+        <%= button_to destroy_user_session_path, method: :delete, class: "logout-btn" do %>
+          <i class="fa fa-sign-out" style="color: white; font-size: 18px;"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
