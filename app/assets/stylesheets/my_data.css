@@ -9,6 +9,12 @@
     border-radius: 100%;
 }
 
+.controleInfo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
 .container-my-data {
     display: flex;
     width: 100%;
@@ -16,12 +22,37 @@
     height: 50%;
     margin-top: 80px;
 }
+
+.container-show {
+    padding: 20px 120px
+}
+
+.inputs-data {
+    align-items: center;
+}
+
 .infoUsuario {
-    /* width: 400px; */
-    /* height: 400px; */
     margin: 0 auto;
     display: flex;
     gap: 30px;
+}
+
+.inputsLados {
+  display: flex;
+  gap: 20px;
+}
+
+.inputBlock {
+    border-radius: 5px !important;
+
+    border: none;
+    padding: 10px 0 10px 20px;
+    width: 250px;
+    color: #000;
+    border: 1px solid #D9D9D933;
+
+    background-color: #D9D9D933;
+    display: block;
 }
 
 .imagemUsuario {
@@ -30,6 +61,22 @@
     height: 300px;
 }
 
+.input-show {
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.input-editing {
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 10px;
+}
 
 .editar {
     padding: 10px;
@@ -82,11 +129,9 @@
         width: calc(100% - 20px);
     }
     .infoUsuario {
-        flex-direction: column;
-        align-items: center;
-        gap: 0;
-        width: 100%;
-        height: auto;
+        margin: 0 auto;
+        display: flex;
+        gap: 30px;
     }
     .container-my-data {
         flex-direction: column;

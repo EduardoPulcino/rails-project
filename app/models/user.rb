@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
 	validates :name, presence: true
 	validates :email, presence: true, uniqueness: true
-	validates :password, presence: true
+	validates :password, presence: true, on: :create
 	validates :phone, presence: true, uniqueness: true, length: { is: 11 }
 
 	has_one_attached :photo
@@ -19,6 +19,10 @@ class User < ApplicationRecord
 	def admin?
 		self.role == 'admin'
 	end
+
+  def budgets_quantity
+    budgets.count
+  end
 
   def normalize_phone
     self.phone = phone.to_s.gsub(/\D/, "")
