@@ -1,64 +1,55 @@
 <%= render "shared/header_profile" %>
 
+<% flash.each do |type, message| %>
+  <div class="flash <%= type %>"><%= message %></div>
+<% end %>
+
 <div class="container-show">
   <div class="header-my-data">
     <h1 class="titulo-perfil">MEU PERFIL</h1>
 
-    <% if !@editando %>
-      <%= button_to "Editar", edit_user_path(current_user), method: :get, class: "btn-default-bgRosa-perfil" %>
-    <% else %>
-      <div>
-        <%= button_to "Cancelar", users_path(current_user), method: :get, class: "btn-default-bgTransparent-perfil", style: "margin-right: 10px" %>
-        <%= button_to "Salvar", users_path(current_user), method: :patch, params: { user: @user }, class: "btn-default-bgRosa-perfil" %>
-      </div>
-    <% end %>
+    <%= button_to "Editar", edit_user_path(current_user), method: :get, class: "btn-default-bgRosa-perfil" %>
   </div>
 
-  <% if @loading %>
-    <div style="text-align: center; margin-top: 100px;">
-      <%= image_tag "loading-gif.gif", width: "50px", alt: "loading" %>
-    </div>
-  <% else %>
-    <div class="container-my-data">
-      <div class="imagemUsuario">
-        <%= image_tag(current_user.photo.present? ? url_for(current_user.photo) : "imgPerfil.png", alt: "img de perfil") %>
+  <div class="container-my-data">
+    <div class="imagemUsuario">
+      <%= image_tag(current_user.photo.present? ? url_for(current_user.photo) : "imgPerfil.png", alt: "img de perfil") %>
 
-        <% if @editando %>
-          <%= button_to "#", class: "editar", data: { action: "abrir-modal-photo" } do %>
-            <i class="material-icons">edit</i>
-          <% end %>
+      <% if @editando %>
+        <%= button_to "#", class: "editar", data: { action: "abrir-modal-photo" } do %>
+          <i class="material-icons">edit</i>
         <% end %>
+      <% end %>
 
-        
-      </div>
+      
+    </div>
 
-      <div class="infoUsuario">
-        <%= form_with(model: current_user) do |f|%>
-          <div class="inputsLados">
-            <div class="controleInfo">
-              <%= f.label :name, class: "input-show" %>
-              <%= f.text_field :name, value: current_user.name, disabled: true, class: "inputBlock" %>
-            </div>
-
-            <div class="controleInfo">
-              <%= f.label :phone, class: "input-show" %>
-              <%= f.text_field :phone, value: current_user.phone, disabled: true, class: "inputBlock" %>
-            </div>
+    <div class="infoUsuario">
+      <%= form_with(model: current_user) do |f|%>
+        <div class="inputsLados">
+          <div class="controleInfo">
+            <%= f.label :name, class: "input-show" %>
+            <%= f.text_field :name, value: current_user.name, disabled: true, class: "inputBlock" %>
           </div>
 
-          <div class="inputsLados">
-            <div class="controleInfo">
-              <%= f.label :email, class: "input-show" %>
-              <%= f.email_field :email, value: current_user.email, disabled: true, class: "inputBlock" %>
-            </div>
+          <div class="controleInfo">
+            <%= f.label :phone, class: "input-show" %>
+            <%= f.text_field :phone, value: current_user.phone, disabled: true, class: "inputBlock" %>
+          </div>
+        </div>
 
-            <div class="controleInfo">
-              <%= f.label :budgets_quantity, class: "input-show" %>
-              <%= f.text_field :budgets_quantity, value: current_user.budgets_quantity, disabled: true, class: "inputBlock" %>
-            </div>
-          </div>          
-        <% end %>
-      </div>
+        <div class="inputsLados">
+          <div class="controleInfo">
+            <%= f.label :email, class: "input-show" %>
+            <%= f.email_field :email, value: current_user.email, disabled: true, class: "inputBlock" %>
+          </div>
+
+          <div class="controleInfo">
+            <%= f.label :budgets_quantity, class: "input-show" %>
+            <%= f.text_field :budgets_quantity, value: current_user.budgets_quantity, disabled: true, class: "inputBlock" %>
+          </div>
+        </div>          
+      <% end %>
     </div>
-  <% end %>
+  </div>
 </div>

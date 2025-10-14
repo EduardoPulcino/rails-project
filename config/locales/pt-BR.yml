@@ -74,7 +74,11 @@ pt-BR:
         budgets_quantity: "Quantidade de orçamentos"
       budget:
         event_date: "Data do evento"
-
+  flash:
+    users:
+      update:
+        success: "Usuário atualizado com sucesso."
+        error: "Erro ao atualizar o usuário"
   errors:
     format: "%{attribute} %{message}"
     messages:
