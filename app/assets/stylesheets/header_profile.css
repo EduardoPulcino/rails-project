@@ -1,0 +1,51 @@
+.header-profile {
+    width: 100%;
+    padding: 10px 0;
+    background: #C54477;
+}
+.container-profile {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+.container-profile img {
+    width: 110px;
+}
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.user {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.user p {
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+}
+.user img {
+    width: 30px;
+    height: 30px;
+}
+.container-profile nav ul {
+    display: flex;
+    gap: 20px;
+}
+.container-profile nav ul li {
+    list-style: none;
+    
+}
+.container-profile nav ul button {
+    color: #fff;
+    font-weight: 400;
+}
+.active {
+    font-weight: bold !important;
+    font-size: 16px;
+    /* color: #f00 !important;  */
+}

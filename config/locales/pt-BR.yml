@@ -69,10 +69,16 @@ pt-BR:
         password_confirmation: "Confirme sua senha"
         name: "Nome"
         phone: "Telefone"
+        photo: "Foto de perfil"
         role: "Permissão"
+        budgets_quantity: "Quantidade de orçamentos"
       budget:
         event_date: "Data do evento"
-
+  flash:
+    users:
+      update:
+        success: "Usuário atualizado com sucesso."
+        error: "Erro ao atualizar o usuário"
   errors:
     format: "%{attribute} %{message}"
     messages:
