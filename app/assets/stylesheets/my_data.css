@@ -42,6 +42,21 @@
   gap: 20px;
 }
 
+.btn-upload-foto {
+  padding: 10px;
+	border-radius: 100%;
+	background-color: #C54477;
+	position: absolute;
+	bottom: 2%;
+	right: 11%;
+	cursor: pointer;
+}
+
+.btn-upload-foto i {
+  font-size: 1.2rem;
+}
+
+
 .inputBlock {
     border-radius: 5px !important;
 

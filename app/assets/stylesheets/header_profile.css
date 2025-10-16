@@ -13,7 +13,7 @@
 .container-profile img {
     width: 110px;
 }
-.userInfo {
+.user-info {
     display: flex;
     align-items: center;
     gap: 20px;

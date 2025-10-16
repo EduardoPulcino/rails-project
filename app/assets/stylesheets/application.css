@@ -54,6 +54,7 @@ button {
   background-color: #C54477;
   padding: 10px 40px;
   color: #fff;
+  cursor: pointer;
   border-radius: 10px;
   font-weight: bold;
 }
@@ -63,7 +64,7 @@ button {
   color: #FFB6C1;
   border-radius: 10px;
   border: 2px solid #FFB6C1;
-
+  cursor: pointer;
   font-weight: bold;
 }
 .btn-default-bgRosa:hover {

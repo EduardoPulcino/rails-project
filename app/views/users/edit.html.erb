@@ -10,8 +10,11 @@
       <%= image_tag(current_user.photo.present? ? url_for(current_user.photo) : "imgPerfil.png", alt: "img de perfil") %>
 
       <%= form_with(model: current_user, url: user_path(current_user), method: :patch, html: { multipart: true }, class: "form-upload-foto") do |f| %>
-        <%= f.file_field :photo, accept: "image/*", class: "input-upload-foto", onchange: "this.form.submit();" %>
-        <%= f.label :photo, "Trocar foto", class: "btn-upload-foto" %>
+        <%= f.file_field :photo, accept: "image/*", class: "input-upload-foto", id: "upload-foto", style: "display: none;", onchange: "this.form.submit();" %>
+
+        <%= f.label :photo, for: "upload-foto", class: "btn-upload-foto" do %>
+          <%= image_tag "icons/edit.svg", size: "20x20" %>
+        <% end %>
       <% end %>
     </div>
 
@@ -42,7 +45,7 @@
         </div>
 
         <div class="buttons">
-          <%= button_to "Cancelar", user_path(current_user), method: :get, class: "btn-default-bgTransparent-perfil", style: "margin-right: 10px" %>
+          <%= link_to "Cancelar", user_path(current_user), class: "btn-default-bgTransparent-perfil", style: "margin-right: 10px" %>
           <%= f.submit "Salvar", class: "btn-default-bgRosa-perfil"  %>
         </div>
       <% end %>

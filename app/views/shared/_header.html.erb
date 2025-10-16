@@ -17,13 +17,11 @@
 				<% if !user_signed_in? %>
 					<%= link_to "Login", new_user_session_path, class: "btn-default-bgTransparent" %>
 				<% else %>
-					<%= link_to user_path, style: "display:flex; align-items:center; gap:10px;" do %>
+					<%= link_to user_path(current_user), style: "display:flex; align-items:center; gap:10px;" do %>
 						<%= image_tag (current_user.photo.attached? ? "avatar.png" : "avatar.png"), width: 50 %>
 						<p style="color:white; font-weight:bold;"><%= current_user.name %></p>
 					<% end %>
 				<% end %>
 			</div>
-
-			<%= link_to "sair", destroy_user_session_path, method: :delete %>
 	</div>
 </header>
