@@ -1,0 +1,49 @@
+<div class="modal hidden" data-modal-target="container">
+  <div class="modalContent" data-controller="photo-upload">
+    <%= form_with(model: @decoration, html: { multipart: true }) do |form| %>
+      <div class="modalBody">
+        <div class="imageContainer">
+          <div class="image" data-photo-upload-target="preview">
+            <% if @decoration.photos.attached? %>
+              <img src="<%= url_for(@decoration.photos.first) %>" alt="Preview" class="previewImage" />
+            <% else %>
+              <span>Sem imagem</span>
+            <% end %>
+          </div>
+
+          <label for="photos_upload" class="editButton">✏️</label>
+          <%= form.file_field :photos,
+                multiple: true,
+                id: "photos_upload",
+                class: "hiddenInput",
+                data: {
+                  photo_upload_target: "input",
+                  action: "change->photo-upload#updateList"
+                } %>
+        </div>
+
+        <div class="fieldsContainer">
+          <div class="field-modal">
+            <%= form.label :name, class: "input-show" %>
+            <%= form.text_field :name %>
+          </div>
+
+          <div class="field-modal">
+            <%= form.label :event_type_id, class: "input-show" %>
+            <%= form.collection_select :event_type_id, EventType.all, :id, :name, prompt: 'Selecione um tipo de evento' %>
+          </div>
+        </div>
+      </div>
+
+      <ul data-photo-upload-target="list" class="selected-photos-list"></ul>
+
+      <div class="modalFooter">
+        <button type="button" class="btn-default-bgTransparent-perfil" data-action="click->modal#close">
+          Cancelar
+        </button>
+
+        <%= form.submit "Salvar", class: "btn-default-bgRosa-perfil" %>
+      </div>
+    <% end %>
+  </div>
+</div>

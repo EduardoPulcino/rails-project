@@ -19,6 +19,8 @@
  *= require grouped_decorations
  *= require specific_decorations
  *= require header_profile
+ *= require decorations_admin
+ *= require modal_decoration
  */
 
 

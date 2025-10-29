@@ -1,12 +1,15 @@
 .container-grouped {
-    width: 100%;
-    margin: 90px auto 0;
-    padding: 0 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    box-sizing: border-box;
-    background: linear-gradient(90deg, #19222E 0%, #2F425B 80%, #1D2736 100%);
+  width: 100%;
+  margin: 90px auto 0;
+  padding: 0 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.container-grouped.grouped {
+  background: linear-gradient(90deg, #19222E 0%, #2F425B 80%, #1D2736 100%);
 }
 
 .container-grouped h1 {
@@ -53,7 +56,13 @@
   background: rgba(0,0,0,0);
   color: #fff;
   opacity: 0;
+  pointer-events: none;
   transition: background 300ms ease, opacity 300ms ease;
+}
+
+.index {
+  margin-top: 0px;
+  background-color: #fff;
 }
 
 .decoration-img {
