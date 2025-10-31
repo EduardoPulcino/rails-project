@@ -60,8 +60,10 @@ pt-BR:
       - :year
   activerecord:
     models:
+      event_type: "Tipo do evento"
       user: "Usuário"
       budget: "Orçamento"
+      decoration: "Decoração"
     attributes:
       user:
         email: "E-mail"
@@ -74,7 +76,15 @@ pt-BR:
         budgets_quantity: "Quantidade de orçamentos"
       budget:
         event_date: "Data do evento"
+      decoration:
+        event_type: "Tipo do evento"
+        name: "Nome"
+        photos: "Fotos"
   flash:
+    decorations:
+      create:
+        success: "Decoração criada com sucesso."
+        error: "Erro ao criar decoração"
     users:
       update:
         success: "Usuário atualizado com sucesso."
@@ -83,6 +93,7 @@ pt-BR:
     format: "%{attribute} %{message}"
     messages:
       wrong_length: "é inválido"
+      required: "é obrigatório"
       blank: "não pode ficar em branco"
       taken: "já está em uso"
       invalid: "não é válido"

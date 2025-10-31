@@ -27,6 +27,7 @@ class DecorationsController < ApplicationController
 
   # GET /decorations/1 or /decorations/1.json
   def show
+    @event_type = EventType.find(@decoration.event_type_id)
   end
 
   # GET /decorations/1/edit

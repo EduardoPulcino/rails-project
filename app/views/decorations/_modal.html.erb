@@ -11,7 +11,7 @@
             <% end %>
           </div>
 
-          <label for="photos_upload" class="editButton">✏️</label>
+          <label for="photos_upload" class="editButton"> <%= image_tag "icons/edit.svg" %> </label>
           <%= form.file_field :photos,
                 multiple: true,
                 id: "photos_upload",
@@ -29,7 +29,7 @@
           </div>
 
           <div class="field-modal">
-            <%= form.label :event_type_id, class: "input-show" %>
+            <%= form.label :event_type, class: "input-show" %>
             <%= form.collection_select :event_type_id, EventType.all, :id, :name, prompt: 'Selecione um tipo de evento' %>
           </div>
         </div>
@@ -42,7 +42,7 @@
           Cancelar
         </button>
 
-        <%= form.submit "Salvar", class: "btn-default-bgRosa-perfil" %>
+        <%= form.submit(@decoration.persisted? ? "Salvar Alterações" : "Criar Decoração", class: "btn-default-bgRosa-perfil") %>
       </div>
     <% end %>
   </div>
