@@ -1,23 +1,88 @@
-<p id="notice"><%= notice %></p>
+<div>
+  <%= render 'shared/header' %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @decoration.name %>
-</p>
+  <div class="decoration-show-container" 
+    data-controller="gallery"
+    data-gallery-images-value='<%= @decoration.photos.map { |p| url_for(p) }.to_json %>'
+    >
 
-<p>
-  <strong>Event type:</strong>
-  <%= EventType.find(@decoration.event_type_id).name %>
-</p>
+    <% flash.each do |type, message| %>
+      <div class="flash <%= type %>"><%= message %></div>
+    <% end %>
 
-<% if @decoration.photo.attached? %>
-  <div style="height: 300px;">
-    <%= image_tag url_for(@decoration.photo), alt: "Foto da decoracao", style: "height: 100%; width: auto;" %>  
+    <div class="decoration-header">
+      <div class="decoration-title-wrapper">
+        <h1 class="decoration-title-show"><%= @decoration.name %></h1>
+        <p class="decoration-type"><%= @event_type.name %></p>
+      </div>
+      
+      <div class="decoration-action" data-controller="modal">
+        <% if user_signed_in? && current_user.admin? %>
+          <%= link_to "",
+            class: "btn-edit-decoration",
+            data: { action: "click->modal#openEdit", id: @decoration.id } do %>
+            <%= image_tag "icons/edit-decoration.svg", size: "22x22", class: "icon-edit" %>
+          <% end %>
+
+          <%= link_to decoration_path(@decoration), method: :delete, data: { confirm: "Tem certeza?" } do%>
+            <%= image_tag "icons/delete.svg", size: "22x22" %>
+          <% end %>
+        <% else %>
+          <%= link_to "Quero esta decoração!", new_budget_path(event_type_id: @event_type.id, decoration: @decoration), class: "btn-want-decoration" %>
+        <% end %>
+
+        <%= render 'modal' %>
+      </div>
+    </div>
+
+    <% if @decoration.photos.attached? %>
+      <div class="decoration-main-photo">
+        <%= image_tag url_for(@decoration.photos.first),
+              alt: "Foto principal",
+              class: "main-photo",
+              data: { gallery_target: "main", action: "click->gallery#openLightbox" } %>
+      </div>
+
+      <div class="decoration-thumbnails">
+        <% @decoration.photos.each do |photo| %>
+          <%= image_tag url_for(photo),
+                alt: "Miniatura da decoração",
+                class: "thumbnail",
+                data: { gallery_target: "thumbnail", action: "click->gallery#swap" } %>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="no-photo">Sem fotos cadastradas</p>
+    <% end %>
+
+    <div style="margin-top: 12px; text-align: center;">
+      <%= button_tag class: 'btn-default-bgTransparent arrow hoverRosa',
+                    type: 'button',
+                    data: { action: "click->gallery#previousImg" } do %>
+      <%= image_tag "icons/arrow-back.svg", size: "20x20", class: "text-rosa" %>
+      <% end %>
+
+      <%= button_tag class: 'btn-default-bgRosa arrow',
+                      type: 'button',
+                      data: { action: "click->gallery#nextImg" } do %>
+        <%= image_tag "icons/arrow-forward.svg", size: "20x20", class: "text-white" %>
+      <% end %>
+    </div>
+
+    <% if user_signed_in? %>
+      <div class="decoration-actions">
+        <% if current_user.admin? %>
+          <%= link_to edit_decoration_path(@decoration), class: "btn-edit-decoration" do %>
+            <%= image_tag "icons/edit.svg", size: "20x20" %>
+          <% end %>
+        <% else %>
+          <%= link_to 'Quero esta decoração!', new_budget_path, event_type_id: @event_type.id, decoration: @decoration, class: "black" %>
+        <%end%>
+      </div>
+    <% end %>
+
+    <div class="lightbox hidden" data-gallery-target="lightbox" data-action="click->gallery#closeLightbox">
+      <img class="lightbox-image" data-gallery-target="lightboxImage" alt="Imagem ampliada" />
+    </div>
   </div>
-<% else %>
-  <p>Sem foto cadastrada</p>
-<% end %>
-
-
-<%= link_to 'Edit', edit_decoration_path(@decoration) %> |
-<%= link_to 'Back', decorations_path %>
+</div>

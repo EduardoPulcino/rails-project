@@ -1,32 +1,48 @@
-<%= form_with(model: decoration) do |form| %>
-  <% if decoration.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(decoration.errors.count, "error") %> prohibited this decoration from being saved:</h2>
-
-      <ul>
-        <% decoration.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+<%= form_with(model: decoration, html: { multipart: true }) do |form| %>
+  <div class="modalBody">
+    <div class="imageContainer">
+      <div class="image" data-photo-upload-target="preview">
+        <% if decoration.photos.attached? %>
+          <img src="<%= url_for(decoration.photos.first) %>" alt="Preview" class="previewImage" />
+        <% else %>
+          <span>Sem imagem</span>
         <% end %>
-      </ul>
+      </div>
+
+      <label for="photos_upload" class="editButton">
+        <%= image_tag "icons/edit.svg" %>
+      </label>
+
+      <%= form.file_field :photos,
+            multiple: true,
+            id: "photos_upload",
+            class: "hiddenInput",
+            data: {
+              photo_upload_target: "input",
+              action: "change->photo-upload#updateList"
+            } %>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <div class="fieldsContainer">
+      <div class="field-modal">
+        <%= form.label :name, class: "input-show" %>
+        <%= form.text_field :name %>
+      </div>
+
+      <div class="field-modal">
+        <%= form.label :event_type, class: "input-show" %>
+        <%= form.collection_select :event_type_id, EventType.all, :id, :name, prompt: 'Selecione um tipo de evento' %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :event_type_id %>
-    <%= form.collection_select :event_type_id, EventType.all, :id, :name, prompt: 'Selecione um tipo de evento' %>
-  </div>
+  <ul data-photo-upload-target="list" class="selected-photos-list"></ul>
 
-  <div class="field">
-    <%= form.label :photo %>
-    <%= form.file_field :photo %>
-  </div>
+  <div class="modalFooter">
+    <button type="button" class="btn-default-bgTransparent-perfil" data-action="click->modal#close">
+      Cancelar
+    </button>
 
-  <div class="actions">
-    <%= form.submit %>
+    <%= form.submit(@decoration.persisted? ? "Salvar Alterações" : "Criar Decoração", class: "btn-default-bgRosa-perfil") %>
   </div>
 <% end %>

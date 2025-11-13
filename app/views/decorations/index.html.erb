@@ -1,29 +1,68 @@
-<p id="notice"><%= notice %></p>
+<div>
+  <%= render "shared/header_profile" %>
 
-<h1>Decorations</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Event type</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @decorations.each do |decoration| %>
-      <tr>
-        <td><%= decoration.name %></td>
-        <td><%= decoration.event_type_id %></td>
-        <td><%= link_to 'Show', decoration %></td>
-        <td><%= link_to 'Edit', edit_decoration_path(decoration) %></td>
-        <td><%= button_to 'Destroy', decoration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+ <% flash.each do |type, message| %>
+  <div class="flash <%= type %>">
+    <% if message.is_a?(Array) %>
+      <% message.each do |msg| %>
+        <p><%= msg %></p>
+      <% end %>
+    <% else %>
+      <p><%= message %></p>
     <% end %>
-  </tbody>
-</table>
+  </div>
+<% end %>
 
-<br>
 
-<%= link_to 'New Decoration', new_decoration_path %>
+  <div style="padding: 20px 120px;">
+    <div class="divTituloBotao">
+      <h1 class="titulo-decoracao">DECORAÇÕES</h1>
+
+      <div class="divBotao" data-controller="modal">
+        <%= link_to "#",
+          class: "btn-default-bgRosa-perfil",
+          data: { action: "click->modal#openNew" } do %>
+          Nova decoração
+        <% end %>
+
+        <%= render 'modal' %>
+      </div>
+
+      <%# <div class="divBotao" data-controller="modal">
+        <button data-action="modal#open" class="btn-default-bgRosa-perfil">
+          Adicionar
+        </button> %>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container-grouped <%= action_name %>">
+    <% @event_types.each do |type| %>
+      <div class="title-link"> 
+        <h2><%= type.name.upcase %></h1>
+        <%= link_to "Ver mais", specific_decorations_path(type.id), class: "link", style: "margin-top: 40px;" %>
+      </div>
+
+      <div class="decorations">
+        <% if type.decorations.empty? %>
+          <div class="sem-decoraçao">
+            <p> Sem decorações cadastradas </p>
+          </div>
+        <% else %>
+          <% type.decorations.each do |decoration| %>
+            <div class="decoration-card" tabindex="0">
+              <%= link_to decoration_path(decoration) do %>
+                <%= image_tag url_for(decoration.photos.first), alt: "Foto da decoração #{decoration.id}", class: "decoration-img" %>
+              <% end %>
+
+              <div class="decoration-overlay">
+                <div class="decoration-title"><%= decoration.name %></div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

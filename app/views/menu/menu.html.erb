@@ -18,7 +18,7 @@
       <div class="container_buttons desktop">
         <%= link_to "Solicitar Orçamento", new_budget_path, class: "btn-default-bgRosa" %>
         <% if user_signed_in? %>
-          <%= link_to user_path, style: "display: flex; align-items: center; gap: 10px;" do %>
+          <%= link_to user_path(current_user), style: "display: flex; align-items: center; gap: 10px;" do %>
             <% if current_user.photo.attached? %>
               <%= image_tag current_user.photo, alt: "avatar", width: "30", height: "30", style: "border-radius: 100%;" %>
             <% else %>

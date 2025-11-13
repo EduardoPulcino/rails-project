@@ -7,8 +7,17 @@ import { application } from "./application"
 import EventsController from "./events_controller"
 application.register("events", EventsController)
 
+import GalleryController from "./gallery_controller"
+application.register("gallery", GalleryController)
+
 import MaskController from "./mask_controller"
 application.register("mask", MaskController)
+
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)
+
+import PhotoUploadController from "./photo_upload_controller"
+application.register("photo-upload", PhotoUploadController)
 
 import QuestionsController from "./questions_controller"
 application.register("questions", QuestionsController)

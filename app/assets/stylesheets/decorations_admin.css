@@ -1,0 +1,264 @@
+.divTituloBotao {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.selectField option {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: #f1f1f1 !important;
+    font-size: 14px;
+    box-sizing: border-box;
+    color: black;
+}
+
+.titulo-decoracao {
+    font-size: 45px;
+    color: #C54477;
+}
+.cardText {
+    font-weight: bold;
+    color: #000;
+    margin: 0;
+    margin-top: 10px;
+    font-size: 18px;
+    text-align: center;
+}
+.botaoAdicionar {
+    color: #fff;
+    background-color: #C54477;
+    width: 200px;
+    height: 45px;
+    border-radius: 16px;
+}
+
+.divBotao {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modalBody {
+    display: flex;
+    gap: 20px;
+}
+
+.imageContainer {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    height: 300px;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background-color: #d8d8d8;
+}
+
+.hiddenInput {
+    display: none;
+}
+
+.editButton {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #d75485;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.editButton:hover {
+    background-color: #d75485;
+    transform: scale(1.1);
+}
+
+.previewImage {
+    width: 100%;
+    height: 100%;
+}
+
+.fieldsContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.label-decoration {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: black;
+}
+
+.inputField,
+.textareaField {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: #f1f1f1;
+    font-size: 14px;
+    box-sizing: border-box;
+    color: black;
+}
+
+.textareaField {
+    resize: none;
+}
+
+.modalFooter {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.cancelButton,
+.saveButton {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+}
+
+.cancelButton {
+    background-color: none;
+    transition: 0.2s;
+    color: #f28a8a;
+    border: 1px solid #f28a8a;
+}
+
+.cancelButton:hover {
+    background-color: #d75485;
+    color: white;
+}
+
+.saveButton {
+    background-color: #d75485;
+    color: white;
+}
+
+.saveButton:hover {
+    background-color: white;
+    color: #d75485;
+    border: 1px solid #d75485;
+}
+
+.cards {
+    width: 100%;
+    display: flex;
+    margin: 0 auto;
+    gap: 20px;
+    height: 60vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cardImg {
+    width: 100%;
+    height: 90%;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+
+.card {
+    border-radius: 10px;
+    cursor: pointer;
+    width: 230px;
+    height: 400px;
+}
+
+.upload-button {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.upload-button:hover {
+  background-color: #45a049;
+}
+
+.field-modal {
+    display: flex;
+    flex-direction: column;
+}
+
+.thumb {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin: 6px;
+  vertical-align: middle;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 3px #ccc;
+}
+
+.item-li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 4px 8px;
+  border-bottom: 1px solid #ccc;
+}
+
+.selected-photos-list {
+  margin-top: 8px;
+  list-style-type: disc;
+  padding-left: 20px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.selected-photos-list li {
+  margin-bottom: 4px;
+}

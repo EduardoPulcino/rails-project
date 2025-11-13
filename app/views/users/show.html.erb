@@ -14,14 +14,6 @@
   <div class="container-my-data">
     <div class="imagemUsuario">
       <%= image_tag(current_user.photo.present? ? url_for(current_user.photo) : "imgPerfil.png", alt: "img de perfil") %>
-
-      <% if @editando %>
-        <%= button_to "#", class: "editar", data: { action: "abrir-modal-photo" } do %>
-          <i class="material-icons">edit</i>
-        <% end %>
-      <% end %>
-
-      
     </div>
 
     <div class="infoUsuario">

@@ -1,6 +1,6 @@
 <%= render "shared/header" %>
 
-<div class="container-grouped">
+<div class="container-grouped <%= action_name %>">
   <div class="title-decorations">
     <h1> Nossas decorações </h1>
   </div>
@@ -23,7 +23,9 @@
       <% else %>
         <% type.decorations.each do |decoration| %>
           <div class="decoration-card" tabindex="0">
-            <%= image_tag url_for(decoration.photo), alt: "Foto da decoração #{decoration.id}", class: "decoration-img" %>
+            <%= link_to decoration_path(decoration) do %>
+              <%= image_tag url_for(decoration.photos.first), alt: "Foto da decoração #{decoration.id}", class: "decoration-img" %>
+            <% end %>
 
             <div class="decoration-overlay">
               <div class="decoration-title"><%= decoration.name %></div>

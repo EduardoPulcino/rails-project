@@ -7,7 +7,7 @@
     <% if @decorations_specific.any? %>
       <% @decorations_specific.each do |decoration| %>
         <div class="decoration-card">
-          <%= image_tag url_for(decoration.photo), alt: "Decoração", class: "decoration-img" %>
+          <%= image_tag url_for(decoration.photos.first), alt: "Decoração", class: "decoration-img" %>
           <div class="decoration-overlay">
             <p><%= decoration.name %></p>
           </div>
