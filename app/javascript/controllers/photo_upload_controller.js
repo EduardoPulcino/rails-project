@@ -4,6 +4,10 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = [ "input", "list", "preview" ]
 
+  connect() {
+    this.updateList()
+  }
+
   updateList() {
     const files = Array.from(this.inputTarget.files)
     this.listTarget.innerHTML = ""
@@ -15,15 +19,11 @@ export default class extends Controller {
       li.textContent = "Nenhum arquivo selecionado"
       this.listTarget.appendChild(li)
     } else if ( files.length <= maxVisibleItems) {
-        files.forEach(file => {
-          this.appendImages(file)
-      })
-
-      this.showPreview(files)
+        files.forEach((file, index) => this.appendImages(file, index))
+        this.showPreview(files)
     } else {
         for (let i = 0; i < maxVisibleItems; i++) {
-          var file = files[i]
-          this.appendImages(file)
+          this.appendImages(files[i], i)
         }
 
         const remainingCount = files.length - maxVisibleItems
@@ -34,12 +34,39 @@ export default class extends Controller {
     }
   }
 
-  appendImages(file) {
+   removeFileAtIndex(indexToRemove) {
+    const dt = new DataTransfer()
+    const files = Array.from(this.inputTarget.files)
+
+    files.forEach((file, index) => {
+      if (index !== indexToRemove) {
+        dt.items.add(file)
+      }
+    })
+
+    this.inputTarget.files = dt.files
+
+    this.updateList()
+  }
+
+  appendImages(file, index) {
     const li = document.createElement("li")
     const img = document.createElement("img")
+
     img.src = URL.createObjectURL(file)
     img.classList.add("thumb")
-    li.append(img, ` ${file.name}`)
+
+    const remover = document.createElement('button');
+
+    remover.textContent = 'Remover';
+     
+    remover.addEventListener("click", () => {
+      this.removeFileAtIndex(index)
+    })
+
+    li.append(img, ` ${file.name}`, remover)
+    li.classList.add('item-li');
+
     this.listTarget.appendChild(li)
   }
 

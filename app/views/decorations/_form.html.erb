@@ -1,15 +1,18 @@
-<%= form_with(model: @decoration, html: { multipart: true }) do |form| %>
+<%= form_with(model: decoration, html: { multipart: true }) do |form| %>
   <div class="modalBody">
     <div class="imageContainer">
       <div class="image" data-photo-upload-target="preview">
-        <% if @decoration.photos.attached? %>
-          <img src="<%= url_for(@decoration.photos.first) %>" alt="Preview" class="previewImage" />
+        <% if decoration.photos.attached? %>
+          <img src="<%= url_for(decoration.photos.first) %>" alt="Preview" class="previewImage" />
         <% else %>
           <span>Sem imagem</span>
         <% end %>
       </div>
 
-      <label for="photos_upload" class="editButton"> <%= image_tag "icons/edit.svg" %> </label>
+      <label for="photos_upload" class="editButton">
+        <%= image_tag "icons/edit.svg" %>
+      </label>
+
       <%= form.file_field :photos,
             multiple: true,
             id: "photos_upload",

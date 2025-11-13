@@ -12,6 +12,11 @@ class DecorationsController < ApplicationController
     @event_type = EventType.find(id)
 
     @decorations_specific = Decoration.find_by_event_type_id(id)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @decorations_specific, status: :ok }
+    end
   end
 
   # GET /decorations or /decorations.json
@@ -32,6 +37,10 @@ class DecorationsController < ApplicationController
 
   # GET /decorations/1/edit
   def edit
+    respond_to do |format|
+      format.html
+      format.turbo_stream { render partial: "decorations/form", locals: { decoration: @decoration }, formats: [:html] }
+    end
   end
 
   # POST /decorations or /decorations.json
@@ -40,7 +49,7 @@ class DecorationsController < ApplicationController
 
     respond_to do |format|
       if @decoration.save
-        format.html { redirect_to decoration_url(@decoration), notice: "Decoration was successfully created." }
+        format.html { redirect_to decoration_url(@decoration), notice: t("flash.decorations.create.success") }
         format.json { render :show, status: :created, location: @decoration }
       else
         flash.now[:alert] = @decoration.errors.full_messages
@@ -54,7 +63,7 @@ class DecorationsController < ApplicationController
   def update
     respond_to do |format|
       if @decoration.update(decoration_params)
-        format.html { redirect_to decoration_url(@decoration), notice: "Decoration was successfully updated." }
+        format.html { redirect_to decoration_url(@decoration), notice: t("flash.decorations.update.success") }
         format.json { render :show, status: :ok, location: @decoration }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -68,7 +77,7 @@ class DecorationsController < ApplicationController
     @decoration.destroy
 
     respond_to do |format|
-      format.html { redirect_to decorations_url, notice: "Decoration was successfully destroyed." }
+      format.html { redirect_to decorations_url, notice: t("flash.decorations.destroy.success") }
       format.json { head :no_content }
     end
   end

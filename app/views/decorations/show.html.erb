@@ -5,23 +5,35 @@
     data-controller="gallery"
     data-gallery-images-value='<%= @decoration.photos.map { |p| url_for(p) }.to_json %>'
     >
+
+    <% flash.each do |type, message| %>
+      <div class="flash <%= type %>"><%= message %></div>
+    <% end %>
+
     <div class="decoration-header">
       <div class="decoration-title-wrapper">
         <h1 class="decoration-title-show"><%= @decoration.name %></h1>
         <p class="decoration-type"><%= @event_type.name %></p>
       </div>
       
-      <div class="decoration-action">
+      <div class="decoration-action" data-controller="modal">
         <% if user_signed_in? && current_user.admin? %>
-          <%= link_to edit_decoration_path(@decoration), class: "btn-edit-decoration", title: "Editar decoração" do %>
+          <%= link_to "",
+            class: "btn-edit-decoration",
+            data: { action: "click->modal#openEdit", id: @decoration.id } do %>
             <%= image_tag "icons/edit-decoration.svg", size: "22x22", class: "icon-edit" %>
+          <% end %>
+
+          <%= link_to decoration_path(@decoration), method: :delete, data: { confirm: "Tem certeza?" } do%>
+            <%= image_tag "icons/delete.svg", size: "22x22" %>
           <% end %>
         <% else %>
           <%= link_to "Quero esta decoração!", new_budget_path(event_type_id: @event_type.id, decoration: @decoration), class: "btn-want-decoration" %>
         <% end %>
+
+        <%= render 'modal' %>
       </div>
     </div>
-
 
     <% if @decoration.photos.attached? %>
       <div class="decoration-main-photo">
@@ -43,7 +55,7 @@
       <p class="no-photo">Sem fotos cadastradas</p>
     <% end %>
 
-    <div style="margin-top: 12px;">
+    <div style="margin-top: 12px; text-align: center;">
       <%= button_tag class: 'btn-default-bgTransparent arrow hoverRosa',
                     type: 'button',
                     data: { action: "click->gallery#previousImg" } do %>

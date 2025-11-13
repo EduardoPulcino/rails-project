@@ -238,8 +238,17 @@
   margin: 6px;
   vertical-align: middle;
   border-radius: 50%;
-  border: 2px solid #fff;       /* borda branca */
+  border: 2px solid #fff;
   box-shadow: 0 0 3px #ccc;
+}
+
+.item-li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 4px 8px;
+  border-bottom: 1px solid #ccc;
 }
 
 .selected-photos-list {
