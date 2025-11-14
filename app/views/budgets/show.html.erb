@@ -42,7 +42,7 @@
 
 <p>
   <strong>Decoration:</strong>
-  <%= Decoration.find(@budget.decoration_id).name %>
+  <%= Decoration.find(@budget.decoration_id).name if @budget.decoration_id.present? %>
 </p>
 
 <p>

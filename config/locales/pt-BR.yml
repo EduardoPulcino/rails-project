@@ -76,6 +76,12 @@ pt-BR:
         budgets_quantity: "Quantidade de orçamentos"
       budget:
         event_date: "Data do evento"
+        start_time: "Horário de início"
+        event_type_id: "Tipo de evento"
+        event_type: "Tipo de evento"
+        guest_count: "Quantidade de convidados"
+        suggestion: "Observação"
+        decoration: "Decoração"
       decoration:
         event_type: "Tipo do evento"
         name: "Nome"
