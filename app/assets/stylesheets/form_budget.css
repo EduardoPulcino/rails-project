@@ -1,0 +1,134 @@
+.budgets-container {
+    height: 100vh;
+    background: linear-gradient(90deg, #19222E 0%, #2F425B 80%, #1D2736 100%);
+}
+
+.budgets-container img {
+    width: 120px;
+}
+
+.img-title {
+    padding-top: 84px;
+    width: 100%;
+    text-align: center;
+}
+
+.budget-title {
+    margin: 10px 0 0;
+    font-weight: bold;
+    text-align: center;
+    font-size: 60px;
+    color: #FFB6C1;
+}
+
+.form-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 25px;
+  background: transparent;
+  border-radius: 10px;
+}
+
+.form-header h2 {
+  color: #333;
+  font-size: 1.5em;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.error-summary {
+  background-color: #ffd9d9;
+  color: #d9534f;
+  border: 1px solid #d9534f;
+  padding: 20px;
+  margin-bottom: 25px;
+  border-radius: 6px;
+}
+
+.error-summary h2 {
+  margin: 0 0 15px;
+  font-size: 1.3em;
+}
+
+.error-summary ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.error-summary ul li {
+  margin-bottom: 6px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;  
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  margin-bottom: 10px;
+}
+
+.input-group-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.input-group-row .input-group {
+  flex: 1;
+  min-width: 250px;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.date-select {
+    width: 25%;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.input-group input[type="number"],
+.input-group input[type="date"],
+.input-group input[type="time"] {
+  -moz-appearance: textfield;
+}
+
+.input-group select {
+  padding-right: 32px;
+}
+
+/* Estilos para o botão de envio */
+.submit-container {
+  text-align: center;
+}
+
+.submit-container input[type="submit"] {
+  background-color: #28a745;
+  color: white;
+  font-size: 1.1em;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-container input[type="submit"]:hover {
+  background-color: #218838;
+}

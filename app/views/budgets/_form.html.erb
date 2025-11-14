@@ -1,6 +1,6 @@
-<%= form_with(model: budget) do |form| %>
+<%= form_with(model: budget, html: { class: 'form-container' }) do |form| %>
   <% if budget.errors.any? %>
-    <div id="error_explanation">
+    <div class="error-summary">
       <h2><%= pluralize(budget.errors.count, "error") %> prohibited this budget from being saved:</h2>
 
       <ul>
@@ -11,37 +11,43 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :event_date %>
-    <%= form.date_select :event_date %>
+  <div class="input-group-row">
+    <div class="input-group date-select">
+      <%= form.label :event_date %>
+      <%= form.text_field :event_date, data: { controller: "date-picker" }, placeholder: "Selecione a data" %>
+    </div>
+
+    <div class="input-group">
+      <%= form.label :guest_count %>
+      <%= form.number_field :guest_count %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :guest_count %>
-    <%= form.number_field :guest_count %>
+  <div class="input-group-row">
+    <div class="input-group">
+      <%= form.label :start_time %>
+      <%= form.text_field :start_time, data: { controller: "time-picker" }, placeholder: "Selecione a hora" %>
+    </div>
+
+    <div class="input-group">
+      <%= form.label :suggestion %>
+      <%= form.text_field :suggestion %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :start_time %>
-    <%= form.time_select :start_time %>
+  <div class="input-group-row">
+    <div class="input-group">
+      <%= form.label :event_type_id %>
+      <%= form.collection_select :event_type_id, EventType.all, :id, :name, prompt: 'Selecione o tipo de evento', onchange: 'this.form.submit():' %>
+    </div>
+
+    <div class="input-group">
+      <%= form.label :decoration_id %>
+      <%= form.collection_select :decoration_id, [], :id, :name, prompt: 'Selecione uma decoração' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :suggestion %>
-    <%= form.text_field :suggestion %>
-  </div>
-
-  <div class="field">
-    <%= form.label :event_type_id %>
-    <%= form.collection_select :event_type_id, EventType.all, :id, :name, prompt: 'Selecione o tipo de evento', onchange: 'this.form.submit():' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :decoration_id %>
-    <%= form.collection_select :decoration_id, [], :id, :name, prompt: 'Selecione uma decoração' %>
-  </div>
-
-  <div class="actions">
+  <div class="submit-container">
     <%= form.submit %>
   </div>
 <% end %>

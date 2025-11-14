@@ -34,7 +34,7 @@ class BudgetsController < ApplicationController
   def create
     @budget = current_user.budgets.new(budget_params)
 
-    @budget.end_time = @budget.start_time + 2.hours
+    @budget.end_time = @budget.start_time + 2.hours if @budget.start_time.present?
 
     respond_to do |format|
       if @budget.save   

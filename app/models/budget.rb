@@ -1,7 +1,7 @@
 class Budget < ApplicationRecord
   belongs_to :event_type
   belongs_to :user
-  belongs_to :decoration
+  belongs_to :decoration, optional: true
 
   before_save :calculate_profit
 
