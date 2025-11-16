@@ -1,4 +1,7 @@
-<%= form_with(model: budget, html: { class: 'form-container' }) do |form| %>
+<%= form_with(model: budget,
+              html: { class: 'form-container' },
+              data: { controller: "decoration-selector",
+                                  "decoration-selector-none-image-value": asset_path('icons/none.svg')}) do |form| %>
   <% if budget.errors.any? %>
     <div class="error-summary">
       <h2><%= pluralize(budget.errors.count, "error") %> prohibited this budget from being saved:</h2>
@@ -30,24 +33,33 @@
     </div>
 
     <div class="input-group">
-      <%= form.label :suggestion %>
-      <%= form.text_field :suggestion %>
+      <%= form.label :decoration %>
+      <%= form.hidden_field :decoration_id, data: { decoration_selector_target: "decoration" } %>
+      <%= button_tag "Selecionar decoração", type: "button", data: { action: "decoration-selector#openModal", decoration_selector_target: "openModalButton" }, disabled: true, class: "input-group-button" %>
     </div>
   </div>
 
   <div class="input-group-row">
-    <div class="input-group">
+    <div class="input-group half-width">
       <%= form.label :event_type_id %>
-      <%= form.collection_select :event_type_id, EventType.all, :id, :name, prompt: 'Selecione o tipo de evento', onchange: 'this.form.submit():' %>
-    </div>
-
-    <div class="input-group">
-      <%= form.label :decoration_id %>
-      <%= form.collection_select :decoration_id, [], :id, :name, prompt: 'Selecione uma decoração' %>
+      <%= form.collection_select :event_type_id, 
+                           EventType.all,
+                           :id, :name,
+                           { prompt: 'Selecione o tipo de evento' }, 
+                           { data: { action: "change->decoration-selector#fetchDecoration" } } %>
     </div>
   </div>
+
+  <div class="input-group">
+    <%= form.label :suggestion %>
+    <%= form.text_area :suggestion %>
+  </div>
+
+  <%= render 'modal_budget' %>
 
   <div class="submit-container">
-    <%= form.submit %>
+    <%= form.submit class: "btn-default-bgRosa" %>
   </div>
 <% end %>
+
+

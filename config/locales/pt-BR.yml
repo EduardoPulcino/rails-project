@@ -127,3 +127,8 @@ pt-BR:
               other: "é muito curta (mínimo: %{count} caracteres)"
           password_confirmation:
             confirmation: "não coincide com a senha"
+  helpers:
+    submit:
+      budget:
+        create: "Solicitar Orçamento"
+        update: "Atualizar Orçamento"

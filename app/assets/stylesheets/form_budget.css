@@ -3,11 +3,11 @@
     background: linear-gradient(90deg, #19222E 0%, #2F425B 80%, #1D2736 100%);
 }
 
-.budgets-container img {
+.img-title {
     width: 120px;
 }
 
-.img-title {
+.div-img-title {
     padding-top: 84px;
     width: 100%;
     text-align: center;
@@ -83,6 +83,7 @@
 
 .input-group input,
 .input-group select,
+.input-group button,
 .input-group textarea {
   width: 100%;
   padding: 12px;
@@ -90,6 +91,23 @@
   border: 1px solid #ccc;
   border-radius: 6px;
   box-sizing: border-box;
+}
+
+.half-width {
+  max-width: 49%;
+}
+
+.input-group-button {
+  color: #d9d9d9;
+  text-align: left;
+  background-color: #ffffff16;
+}
+
+button.input-group-button:disabled {
+  background-color: light-dark(rgba(239, 239, 239, 0.3), rgba(19, 1, 1, 0.3)) !important;
+  color: light-dark(rgba(16, 16, 16, 0.3), rgba(255, 255, 255, 0.3)) !important;
+  border-color: light-dark(rgba(118, 118, 118, 0.3), rgba(195, 195, 195, 0.3)) !important;
+  cursor: auto;
 }
 
 .date-select {
@@ -113,22 +131,7 @@
   padding-right: 32px;
 }
 
-/* Estilos para o botão de envio */
 .submit-container {
   text-align: center;
-}
-
-.submit-container input[type="submit"] {
-  background-color: #28a745;
-  color: white;
-  font-size: 1.1em;
-  padding: 14px 30px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.submit-container input[type="submit"]:hover {
-  background-color: #218838;
+  margin-top: 40px;
 }

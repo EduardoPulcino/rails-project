@@ -1,0 +1,15 @@
+<div class="modal hidden", data-decoration-selector-target="containerDecoration">
+  <div class="box-modal-budget">
+
+    <h2 class="titulo-modal-budget">SELECIONE A DECORAÇÃO</h2>
+
+    <div class="decoracoes", data-decoration-selector-target="contentDecoration">
+
+    </div>
+
+    <div class="footer">
+      <%= button_tag "Cancelar", type: "button", class: "btn-default-bgTransparent", data: { action: "decoration-selector#closeModal" } %>
+      <%= button_tag "Selecionar", type: "button", class: "btn-default-bgRosa", disabled: true, data: { action: "decoration-selector#confirmDecoration", decoration_selector_target: "selectButton" } %>
+    </div>
+  </div>
+</div>
