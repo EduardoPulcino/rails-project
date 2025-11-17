@@ -6,9 +6,6 @@ export default class extends Controller {
   static targets = ["container", "prev", "next"]
 
   connect() {
-    // Só pra depurar:
-    console.log("Carousel connect", this.containerTarget, this.prevTarget, this.nextTarget)
-
     this.swiper = new Swiper(this.containerTarget, {
       slidesPerView: this.slidesPerView(),
       spaceBetween: 10,

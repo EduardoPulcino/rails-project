@@ -4,6 +4,12 @@
 
 import { application } from "./application"
 
+import DatePickerController from "./date_picker_controller"
+application.register("date-picker", DatePickerController)
+
+import DecorationSelectorController from "./decoration_selector_controller"
+application.register("decoration-selector", DecorationSelectorController)
+
 import EventsController from "./events_controller"
 application.register("events", EventsController)
 
@@ -27,3 +33,6 @@ application.register("slideshow", SlideshowController)
 
 import StepReservaController from "./step_reserva_controller"
 application.register("step-reserva", StepReservaController)
+
+import TimePickerController from "./time_picker_controller"
+application.register("time-picker", TimePickerController)

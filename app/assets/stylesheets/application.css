@@ -22,6 +22,8 @@
  *= require decorations_admin
  *= require modal_decoration
  *= require show_decoration
+ *= require form_budget
+ *= require modal_budget
  */
 
 
@@ -51,6 +53,8 @@ button {
   color: #fff;
   border-radius: 8px;
   font-weight: bold;
+  cursor: pointer;
+  border: none;
 }
 
 .btn-default-bgRosa-perfil {
@@ -88,6 +92,15 @@ button {
   background-color: #FFB6C1;
   color: #fff !important;
 }
+
+button.btn-default-bgRosa:disabled {
+  background-color: light-dark(rgba(239, 239, 239, 0.3), rgba(19, 1, 1, 0.3)) !important;
+  color: light-dark(rgba(16, 16, 16, 0.3), rgba(255, 255, 255, 0.3)) !important;
+  border-color: light-dark(rgba(118, 118, 118, 0.3), rgba(195, 195, 195, 0.3)) !important;
+  cursor: auto;
+}
+
+
 .swiper-button-next::after,
 .swiper-button-prev::after {
   color: #ffffff; 

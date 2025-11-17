@@ -15,7 +15,14 @@ class DecorationsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: @decorations_specific, status: :ok }
+      format.json { 
+      render json: @decorations_specific.map { |decoration| 
+        {
+          id: decoration.id,
+          name: decoration.name,
+          photo: url_for(decoration.photos.first),
+        }
+      }, status: :ok }
     end
   end
 
