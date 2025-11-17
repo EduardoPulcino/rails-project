@@ -130,5 +130,5 @@ pt-BR:
   helpers:
     submit:
       budget:
-        create: "Solicitar Orçamento"
-        update: "Atualizar Orçamento"
+        create: "Solicitar orçamento"
+        update: "Atualizar orçamento"
