@@ -7,9 +7,6 @@ export default class extends Controller {
   static values = { num: Number }
 
   connect() {
-    console.log("aqqq")
-
-
     this.passoAtivo = 1
     this.update()
   }

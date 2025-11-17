@@ -26,7 +26,6 @@ export default class extends Controller {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         this.populateModal(data)
       })
       .catch(error => console.error("Erro ao carregar decoração:", error));
@@ -116,7 +115,6 @@ export default class extends Controller {
   confirmDecoration() {
     this.closeModal()
     this.changeButtonText()
-    console.log("Decoração selecionada:", this.selectedDecorationId)
   }
 
   changeButtonText() {
