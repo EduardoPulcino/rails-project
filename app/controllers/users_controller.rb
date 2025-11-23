@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: %i[ show, edit, update ]
+  before_action :set_user, only: %i[ show, edit, update, my_reservations ]
 
   # GET /users/1 or /users/1.json
   def show
@@ -8,6 +8,10 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+  end
+
+  def my_reservations
+    @budgets = current_user.budgets
   end
 
   # PATCH/PUT /users/1 or /users/1.json

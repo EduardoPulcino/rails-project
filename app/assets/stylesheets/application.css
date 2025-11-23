@@ -24,6 +24,8 @@
  *= require show_decoration
  *= require form_budget
  *= require modal_budget
+ *= require my_reservations
+ *= require form_edit_budget
  */
 
 

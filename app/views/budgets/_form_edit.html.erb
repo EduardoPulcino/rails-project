@@ -1,0 +1,50 @@
+<%= form_with(model: budget,
+							html: { class: "form-edit-budget" }) do |form| %>
+
+	<div class="column">
+		<div style="display: flex;">
+			<div style="width: 50%">
+				<div class="field">
+					<%= form.label :decoration, class: "label-edit" %>
+					<%= form.collection_select :decoration_id, Decoration.all, :id, :name, { prompt: 'Selecione uma decoração' }, { class: 'form-select' } %>
+				</div>
+
+				<div class="field">
+					<%= form.label :start_time, class: "label-edit" %>
+					<%= form.text_field :start_time,
+															value: budget.start_time&.strftime("%H:%M"),
+															data: { controller: "time-picker" },
+															placeholder: "Selecione a hora" %>
+				</div>
+
+				<div class="field">
+					<%= form.label :end_time, class: "label-edit" %>
+					<%= form.text_field :end_time,
+															value: budget.end_time&.strftime("%H:%M"),
+															data: { controller: "time-picker" },
+															placeholder: "Selecione a hora",
+															disabled: true %>
+				</div>
+			</div>
+
+			<div style="width: 50%">
+				<div class="field">
+					<%= form.label :event_date, class: "label-edit" %>
+					<%= form.text_field :event_date,
+															value: budget.event_date.strftime("%d/%m/%y"),
+															data: { controller: "date-picker" }, placeholder: "Selecione a data" %>
+				</div>
+
+				<div class="field">
+					<%= form.label :guest_count, class: "label-edit" %>
+					<%= form.number_field :guest_count, class: 'form-input' %>
+				</div>
+
+				<div class="field">
+					<%= form.label :revenue, class: "label-edit" %>
+					<%= form.number_field :revenue, step: "0.01", class: 'form-input', disabled: true %>
+				</div>
+			</div>
+		</div>
+	<div>
+<% end %>

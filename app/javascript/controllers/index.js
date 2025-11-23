@@ -28,6 +28,9 @@ application.register("photo-upload", PhotoUploadController)
 import QuestionsController from "./questions_controller"
 application.register("questions", QuestionsController)
 
+import ReservationsController from "./reservations_controller"
+application.register("reservations", ReservationsController)
+
 import SlideshowController from "./slideshow_controller"
 application.register("slideshow", SlideshowController)
 

@@ -25,7 +25,9 @@ Rails.application.routes.draw do
       get 'specific/:event_type_id', to: 'decorations#specific', as: 'specific'
     end
   end
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do
+    get :my_reservations, on: :member
+  end
   get '/menu', to: 'menu#menu'
 
   root 'home#index'

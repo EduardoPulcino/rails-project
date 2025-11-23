@@ -1,0 +1,46 @@
+<div>
+	<%= render 'shared/header_profile' %>
+
+	<div style="padding: 20px 120px">
+		<div>
+			<div class="containerHeader">
+				<h1 class="titulo-perfil"> Minhas reservas </h1>
+				<%= link_to "Novo orçamento", new_budget_path, class: "btn-default-bgRosa-perfil" %>
+			</div>
+
+			<div class="containerReservas"  data-controller="reservations">
+				<div class="listaDeReservas">
+					<ul>
+						<% @budgets.each do |budget| %>
+							<li>
+								<div class="colIconName">
+									<%= image_tag "clock.svg", class: "thickIcon", style: "width: 1em; height: 1em;" %>
+									<%= button_tag "#{budget.event_type.name}" %>
+								</div>
+
+								<p> <%= budget.event_date.strftime("%d/%m/%Y") %> </p>
+
+								<div class="acaoReserva">
+									<%= image_tag "icons/eye", style: "width: 18px;", data: { action: "click->reservations#hide" } %>
+									<%= image_tag "icons/none", style: "width: 18px; " %>
+								</div>
+							</li>
+						<% end %>
+					</ul>
+				</div>
+
+				<div class="visualizacaoReserva" data-reservations-target="color" >
+					<div class="semReservaSelecionada" data-reservations-target="empty">
+						<%= image_tag "balao.png" %>
+						<h3>Selecione uma reserva para visualizar as informações aqui</h3>
+					</div>
+
+					<div class="hidden" style="height: 400px" data-reservations-target="selected">
+						<% @budget = current_user.budgets.third %>
+						<%= render 'budgets/container_edit', budget: @budget %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

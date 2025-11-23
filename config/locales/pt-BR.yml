@@ -77,8 +77,10 @@ pt-BR:
       budget:
         event_date: "Data do evento"
         start_time: "Horário de início"
+        end_time: "Horário de término"
         event_type_id: "Tipo de evento"
         event_type: "Tipo de evento"
+        revenue: "Valor do evento"
         guest_count: "Quantidade de convidados"
         suggestion: "Observação"
         decoration: "Decoração"
