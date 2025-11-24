@@ -1,6 +1,10 @@
 <div>
 	<%= render 'shared/header_profile' %>
 
+	<% flash.each do |type, message| %>
+		<div class="flash <%= type %>"><%= message %></div>
+	<% end %>
+
 	<div style="padding: 20px 120px">
 		<div>
 			<div class="containerHeader">
@@ -14,16 +18,25 @@
 						<% @budgets.each do |budget| %>
 							<li>
 								<div class="colIconName">
-									<%= image_tag "clock.svg", class: "thickIcon", style: "width: 1em; height: 1em;" %>
+									<%= render_budget_icon(budget) %>
 									<%= button_tag "#{budget.event_type.name}" %>
 								</div>
 
 								<p> <%= budget.event_date.strftime("%d/%m/%Y") %> </p>
 
-								<div class="acaoReserva">
-									<%= image_tag "icons/eye", style: "width: 18px;", data: { action: "click->reservations#hide" } %>
-									<%= image_tag "icons/none", style: "width: 18px; " %>
-								</div>
+								 <div class="acaoReserva">
+										<%= link_to budget_path(budget), 
+												data: { 
+													turbo_frame: "budget_details",
+													action: "click->reservations#hide"
+												} do %>
+											<%= image_tag "icons/eye", style: "width: 18px;" %>
+										<% end %>
+
+										<%= link_to cancel_budget_path(budget), method: :put, data: { confirm: "Tem certeza?" } do%>
+											<%= image_tag "icons/none", style: "width: 18px;" %>
+										<% end %>
+									</div>
 							</li>
 						<% end %>
 					</ul>
@@ -35,10 +48,8 @@
 						<h3>Selecione uma reserva para visualizar as informações aqui</h3>
 					</div>
 
-					<div class="hidden" style="height: 400px" data-reservations-target="selected">
-						<% @budget = current_user.budgets.third %>
-						<%= render 'budgets/container_edit', budget: @budget %>
-					</div>
+					<%= turbo_frame_tag "budget_details", class: "hidden", style: "height: 400px", data: { reservations_target: "selected" } do %>
+					<% end %>
 				</div>
 			</div>
 		</div>

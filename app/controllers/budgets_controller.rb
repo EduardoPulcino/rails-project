@@ -1,6 +1,6 @@
 class BudgetsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_budget, only: %i[ show edit update destroy cancel confirm ]
+  before_action :set_budget, only: %i[ show edit update destroy cancel confirm details]
   before_action :authenticate_admin, only: %i[ cancel confirm ]
 
   # GET /budgets or /budgets.json
@@ -19,6 +19,13 @@ class BudgetsController < ApplicationController
 
   # GET /budgets/1 or /budgets/1.json
   def show
+    respond_to do |format|
+      format.html do
+        if turbo_frame_request?
+          render partial: 'budgets/container_edit', locals: { budget: @budget }
+        end
+      end
+    end
   end
 
   # GET /budgets/new
@@ -77,7 +84,7 @@ class BudgetsController < ApplicationController
       DeleteEventCalendar.new.delete_event(@budget.id)
 
       respond_to do |format|
-        format.html { redirect_to budget_url(@budget), notice: "Budget was successfully canceled." }
+        format.html { redirect_to my_reservations_user_path(current), notice: "Budget was successfully canceled." }
         format.json { head :no_content }
       end
     else

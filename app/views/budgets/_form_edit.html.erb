@@ -6,7 +6,9 @@
 			<div style="width: 50%">
 				<div class="field">
 					<%= form.label :decoration, class: "label-edit" %>
-					<%= form.collection_select :decoration_id, Decoration.all, :id, :name, { prompt: 'Selecione uma decoração' }, { class: 'form-select' } %>
+					<%= form.text_field :decoration,
+															value: budget.decoration&.name || "Sem decoração",
+															disabled: true %>
 				</div>
 
 				<div class="field">
@@ -14,7 +16,7 @@
 					<%= form.text_field :start_time,
 															value: budget.start_time&.strftime("%H:%M"),
 															data: { controller: "time-picker" },
-															placeholder: "Selecione a hora" %>
+															disabled: true %>
 				</div>
 
 				<div class="field">
@@ -22,7 +24,6 @@
 					<%= form.text_field :end_time,
 															value: budget.end_time&.strftime("%H:%M"),
 															data: { controller: "time-picker" },
-															placeholder: "Selecione a hora",
 															disabled: true %>
 				</div>
 			</div>
@@ -32,17 +33,21 @@
 					<%= form.label :event_date, class: "label-edit" %>
 					<%= form.text_field :event_date,
 															value: budget.event_date.strftime("%d/%m/%y"),
-															data: { controller: "date-picker" }, placeholder: "Selecione a data" %>
+															data: { controller: "date-picker" },
+															disabled: true %>
 				</div>
 
 				<div class="field">
 					<%= form.label :guest_count, class: "label-edit" %>
-					<%= form.number_field :guest_count, class: 'form-input' %>
+					<%= form.number_field :guest_count, class: 'form-input', disabled: true %>
 				</div>
 
 				<div class="field">
 					<%= form.label :revenue, class: "label-edit" %>
-					<%= form.number_field :revenue, step: "0.01", class: 'form-input', disabled: true %>
+					<%= form.number_field :revenue,
+																value: budget.revenue,
+																placeholder: "Valor em análise",
+																step: "0.01", class: 'form-input', disabled: true %>
 				</div>
 			</div>
 		</div>
