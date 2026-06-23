@@ -25,13 +25,13 @@ Rails.application.routes.draw do
       get 'specific/:event_type_id', to: 'decorations#specific', as: 'specific'
     end
   end
-  resources :users, only: [:show, :edit, :update] do
-    get :my_reservations, on: :member
-  end
+  resources :users, only: [:show, :edit, :update]
   get '/menu', to: 'menu#menu'
 
   root 'home#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  mount Sidekiq::Web => '/sidekiq'
+  authenticate :user, lambda(&:admin?) do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 end

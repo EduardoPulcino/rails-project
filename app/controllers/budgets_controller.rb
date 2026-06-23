@@ -5,12 +5,11 @@ class BudgetsController < ApplicationController
 
   # GET /budgets or /budgets.json
   def index
-    if current_user.admin?
-      @budgets = Budget.all
-    else
-      @budgets = current_user.budgets
-    end
-    
+    @budgets = current_user.admin? ? Budget.all : current_user.budgets
+    @budgets = @budgets.where(status: params['status']) if params['status'].present?
+    @budgets = @budgets.search(params[:search])
+    @budgets = @budgets.period(params[:period])
+
     respond_to do |format|
       format.html
       format.json { render json: @budgets, status: :ok }
@@ -60,7 +59,7 @@ class BudgetsController < ApplicationController
   def update
     respond_to do |format|
       if @budget.update(budget_params)
-        format.html { redirect_to budget_url(@budget), notice: "Budget was successfully updated." }
+        format.html { redirect_to budget_url(@budget), notice: t('flash.budgets.update.success') }
         format.json { render :show, status: :ok, location: @budget }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -80,16 +79,21 @@ class BudgetsController < ApplicationController
   end
 
   def cancel
-    if @budget.update(status: 'CANCELADO', canceled: true) 
-      DeleteEventCalendar.new.delete_event(@budget.id)
-
-      respond_to do |format|
-        format.html { redirect_to my_reservations_user_path(current), notice: "Budget was successfully canceled." }
-        format.json { head :no_content }
+    respond_to do |format|
+      if @budget.canceled?
+        format.html { redirect_to budgets_path, alert: t('flash.budgets.cancel.already') }
+        format.json { head :unprocessable_entity }
       end
-    else
-      format.html { render :edit, status: :unprocessable_entity }
-      format.json { render json: @budget.errors, status: :unprocessable_entity }
+
+      if @budget.update(status: 'CANCELADO', canceled: true) 
+        # DeleteEventCalendar.new.delete_event(@budget.id)
+
+        format.html { redirect_to budgets_path, notice: t('flash.budgets.cancel.success') }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to budgets_path, status: :unprocessable_entity, alert: @budget.errors }
+        format.json { render json: @budget.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -98,7 +102,7 @@ class BudgetsController < ApplicationController
       UpdateEventCalendar.new.update_event(@budget.id)
 
       respond_to do |format|
-        format.html { redirect_to budget_url(@budget), notice: "Budget was successfully confirmed." }
+        format.html { redirect_to budget_url(@budget), notice: t('flash.budgets.confirm.success') }
         format.json { head :no_content }
       end
     else

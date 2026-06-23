@@ -1,1 +1,7 @@
+log/*
+tmp/*
 node_modules/
+public/packs-test/
+public/packs/
+*.lock
+.DS_Store

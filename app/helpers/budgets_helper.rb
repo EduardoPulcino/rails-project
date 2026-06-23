@@ -13,4 +13,8 @@ module BudgetsHelper
 
 		image_tag icon, class: "thickIcon", style: "width: 1em; height: 1em;"
 	end
+
+	def set_index_title
+		current_user.admin? ? "Reservas" : "Minhas reservas"
+	end
 end

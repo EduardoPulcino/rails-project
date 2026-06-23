@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 	def authenticate_admin
 		return if current_user.admin?
 
-		path = (current_user ? my_reservations_user_path : root_path)
+		path = (current_user ? budgets_path : root_path)
 		redirect_to path, alert: 'Você não tem permissão para essa ação'
 	end
 

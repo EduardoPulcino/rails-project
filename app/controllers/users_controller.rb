@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: %i[ show, edit, update, my_reservations ]
+  before_action :set_user, only: %i[ show edit update my_reservations ]
 
   # GET /users/1 or /users/1.json
   def show

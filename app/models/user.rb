@@ -16,10 +16,6 @@ class User < ApplicationRecord
 	has_one_attached :photo
 	has_many :budgets
 
-	def admin?
-		self.role == 'admin'
-	end
-
   def budgets_quantity
     budgets.count
   end
