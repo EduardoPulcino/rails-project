@@ -1,7 +1,14 @@
+.git
+.gitignore
 log/*
 tmp/*
 node_modules/
 public/packs-test/
 public/packs/
-*.lock
+storage/*
 .DS_Store
+.env*
+docker-compose*.yml
+README.md
+spec/
+test/
