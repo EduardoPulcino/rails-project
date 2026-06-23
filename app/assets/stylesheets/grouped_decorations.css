@@ -12,6 +12,10 @@
   background: linear-gradient(90deg, #19222E 0%, #2F425B 80%, #1D2736 100%);
 }
 
+.decorations-content {
+  margin-bottom: 32px;
+}
+
 .container-grouped h1 {
     text-align: center;
     font-size: 48px;

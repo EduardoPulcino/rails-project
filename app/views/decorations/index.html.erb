@@ -37,20 +37,31 @@
     </div>
   </div>
 
+  <% if @search.present? && @filtered_ids&.empty? %>
+    <p class="decorations-search-empty">Nenhuma decoração encontrada para "<%= @search %>"</p>
+  <% end %>
+
   <div class="container-grouped <%= action_name %>">
+    <% if current_user&.admin? %>
+      <%= render "search_form", search_url: decorations_path, search_term: @search %>
+    <% end %>
+
     <% @event_types.each do |type| %>
+      <% filtered_decorations = @filtered_ids ? type.decorations.select { |d| @filtered_ids.include?(d.id) } : type.decorations %>
+      <% next if @search.present? && filtered_decorations.empty? %>
+
       <div class="title-link"> 
-        <h2><%= type.name.upcase %></h1>
+        <h2><%= type.name.upcase %></h2>
         <%= link_to "Ver mais", specific_decorations_path(type.id), class: "link", style: "margin-top: 40px;" %>
       </div>
 
       <div class="decorations">
-        <% if type.decorations.empty? %>
+        <% if filtered_decorations.empty? %>
           <div class="sem-decoraçao">
             <p> Sem decorações cadastradas </p>
           </div>
         <% else %>
-          <% type.decorations.each do |decoration| %>
+          <% filtered_decorations.each do |decoration| %>
             <div class="decoration-card" tabindex="0">
               <%= link_to decoration_path(decoration) do %>
                 <%= image_tag url_for(decoration.photos.first), alt: "Foto da decoração #{decoration.id}", class: "decoration-img" %>
