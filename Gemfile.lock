@@ -416,6 +416,7 @@ DEPENDENCIES
   rack-proxy (= 0.7.7)
   rails (= 6.1.4)
   rspec-rails (~> 6.1.0)
+  rubyzip
   sass-rails (~> 5.0)
   selenium-webdriver
   semantic_range (= 3.1.0)

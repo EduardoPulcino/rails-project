@@ -1,8 +1,9 @@
 class DecorationsController < ApplicationController
   before_action :authenticate_user!, except: %i[ grouped index show ]
-  before_action :set_decoration, only: %i[ show edit update destroy ]
+  before_action :set_decoration, only: %i[ show edit update destroy download_photos ]
   before_action :set_event_types, only: %i[ grouped index create ]
-  before_action :authenticate_admin, only: %i[ edit update destroy new create ]
+  before_action :set_search_filter, only: %i[ index grouped specific ]
+  before_action :authenticate_admin, only: %i[ edit update destroy new create download_photos ]
 
   def grouped
   end
@@ -10,8 +11,8 @@ class DecorationsController < ApplicationController
   def specific
     id = params[:event_type_id]
     @event_type = EventType.find(id)
-
     @decorations_specific = Decoration.find_by_event_type_id(id)
+    @decorations_specific = @decorations_specific.search(@search) if @search.present?
 
     respond_to do |format|
       format.html
@@ -29,7 +30,7 @@ class DecorationsController < ApplicationController
   # GET /decorations or /decorations.json
   def index
     @decoration = Decoration.new
-    @decorations = Decoration.all
+    @decorations = Decoration.search(@search)
 
     respond_to do |format|
       format.html
@@ -89,6 +90,36 @@ class DecorationsController < ApplicationController
     end
   end
 
+  def download_photos
+    unless @decoration.photos.attached?
+      redirect_to decoration_path(@decoration), alert: "Esta decoração não possui fotos para download."
+      return
+    end
+
+    zip_filename = "#{@decoration.name.parameterize}-fotos.zip"
+    buffer = Zip::OutputStream.write_buffer do |zip|
+      used_names = {}
+
+      @decoration.photos.each do |photo|
+        entry_name = photo.filename.to_s
+        if used_names[entry_name]
+          used_names[entry_name] += 1
+          base = File.basename(entry_name, File.extname(entry_name))
+          ext = File.extname(entry_name)
+          entry_name = "#{base}-#{used_names[entry_name]}#{ext}"
+        else
+          used_names[entry_name] = 1
+        end
+
+        zip.put_next_entry(entry_name)
+        zip.write(photo.download)
+      end
+    end
+
+    buffer.rewind
+    send_data buffer.read, filename: zip_filename, type: "application/zip", disposition: "attachment"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_decoration
@@ -97,6 +128,11 @@ class DecorationsController < ApplicationController
 
     def set_event_types
       @event_types = EventType.includes(:decorations).all
+    end
+
+    def set_search_filter
+      @search = params[:search].to_s.strip
+      @filtered_ids = @search.present? ? Decoration.search(@search).pluck(:id).to_set : nil
     end
 
     # Only allow a list of trusted parameters through.

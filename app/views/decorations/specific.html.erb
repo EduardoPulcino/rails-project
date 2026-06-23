@@ -3,7 +3,14 @@
 <div class="container-specific">
   <h1><%= @event_type.name %></h1>
 
-  <div class="decorations", style="margin-bottom: 32px;">
+  <%= render "search_form", search_url: specific_decorations_path(@event_type), search_term: @search %>
+
+  <div class="decorations-content">
+    <% if @search.present? && @decorations_specific.empty? %>
+      <p class="decorations-search-empty decorations-search-empty--public">Nenhuma decoração encontrada para "<%= @search %>"</p>
+    <% end %>
+
+    <div class="decorations">
     <% if @decorations_specific.any? %>
       <% @decorations_specific.each do |decoration| %>
         <div class="decoration-card">
@@ -16,6 +23,7 @@
     <% else %>
       <p class="sem-decoraçao">Sem decorações cadastradas</p>
     <% end %>
+    </div>
   </div>
 </div>
 

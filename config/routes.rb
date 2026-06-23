@@ -20,6 +20,10 @@ Rails.application.routes.draw do
 
   resources :reviews
   resources :decorations, except: [ :new ] do
+    member do
+      get :download_photos
+    end
+
     collection do
       get :grouped
       get 'specific/:event_type_id', to: 'decorations#specific', as: 'specific'

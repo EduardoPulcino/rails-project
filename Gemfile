@@ -32,6 +32,7 @@ gem 'google-api-client'
 gem 'googleauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
+gem 'rubyzip', require: 'zip'
 
 
 # Use Capistrano for deployment
