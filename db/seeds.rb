@@ -11,7 +11,7 @@ admin = User.create!(
   email: 'admin@example.com',
   password: 'password123',
   password_confirmation: 'password123',
-  phone: '1234567890',
+  phone: '12345678901',
   role: :admin
 )
 
@@ -20,7 +20,7 @@ user = User.create!(
   email: 'user@example.com',
   password: 'password123',
   password_confirmation: 'password123',
-  phone: '0987654321',
+  phone: '09876543212',
   role: :user
 )
 

@@ -77,8 +77,14 @@ pt-BR:
       budget:
         event_date: "Data do evento"
         start_time: "Horário de início"
+        end_time: "Horário de término"
+        cake_flavor: "Sabor do bolo"
+        main_course: "Prato principal"
+        expense: "Gastos"
+        profit: "Lucro"
         event_type_id: "Tipo de evento"
         event_type: "Tipo de evento"
+        revenue: "Valor do evento"
         guest_count: "Quantidade de convidados"
         suggestion: "Observação"
         decoration: "Decoração"
@@ -101,6 +107,18 @@ pt-BR:
       update:
         success: "Usuário atualizado com sucesso."
         error: "Erro ao atualizar o usuário"
+    budgets:
+      update:
+        success: "Orçamento atualizado com sucesso."
+        error: "Erro ao atualizar orçamento"
+      cancel: 
+        success: "Orçamento cancelado com sucesso."
+        error: "Erro ao cancelar orçamento"
+        already: "Orçamento já está cancelado."
+      confirm:
+        success: "Orçamento confirmado com sucesso."
+        error: "Erro ao confirmar orçamento"
+        already: "Orçamento já está confirmado."
   errors:
     format: "%{attribute} %{message}"
     messages:

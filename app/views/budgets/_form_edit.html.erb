@@ -1,0 +1,55 @@
+<%= form_with(model: budget,
+							html: { class: "form-edit-budget" }) do |form| %>
+
+	<div class="column">
+		<div style="display: flex;">
+			<div style="width: 50%">
+				<div class="field">
+					<%= form.label :decoration, class: "label-edit" %>
+					<%= form.text_field :decoration,
+															value: budget.decoration&.name || "Sem decoração",
+															disabled: true %>
+				</div>
+
+				<div class="field">
+					<%= form.label :start_time, class: "label-edit" %>
+					<%= form.text_field :start_time,
+															value: budget.start_time&.strftime("%H:%M"),
+															data: { controller: "time-picker" },
+															disabled: true %>
+				</div>
+
+				<div class="field">
+					<%= form.label :end_time, class: "label-edit" %>
+					<%= form.text_field :end_time,
+															value: budget.end_time&.strftime("%H:%M"),
+															data: { controller: "time-picker" },
+															disabled: true %>
+				</div>
+			</div>
+
+			<div style="width: 50%">
+				<div class="field">
+					<%= form.label :event_date, class: "label-edit" %>
+					<%= form.text_field :event_date,
+															value: budget.event_date.strftime("%d/%m/%y"),
+															data: { controller: "date-picker" },
+															disabled: true %>
+				</div>
+
+				<div class="field">
+					<%= form.label :guest_count, class: "label-edit" %>
+					<%= form.number_field :guest_count, class: 'form-input', disabled: true %>
+				</div>
+
+				<div class="field">
+					<%= form.label :revenue, class: "label-edit" %>
+					<%= form.number_field :revenue,
+																value: budget.revenue,
+																placeholder: "Valor em análise",
+																step: "0.01", class: 'form-input', disabled: true %>
+				</div>
+			</div>
+		</div>
+	<div>
+<% end %>

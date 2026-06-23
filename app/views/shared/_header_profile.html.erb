@@ -8,7 +8,7 @@
       <ul>
         <% if current_user&.role == "admin" %>
           <li>
-            <%= link_to "Reservas", root_path %>
+            <%= link_to "Reservas", budgets_path %>
           </li>
           <li>
             <%= link_to "Métricas", root_path %>
@@ -21,7 +21,7 @@
           </li>
         <% else %>
           <li>
-            <%= link_to "Minhas Reservas", root_path %>
+            <%= link_to "Minhas Reservas", budgets_path %>
           </li>
         <% end %>
 

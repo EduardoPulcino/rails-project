@@ -4,9 +4,10 @@ class ApplicationController < ActionController::Base
 	protected
 
 	def authenticate_admin
-		unless current_user.admin?
-			redirect_to root_path, notice: 'You are not allowed'
-		end
+		return if current_user.admin?
+
+		path = (current_user ? budgets_path : root_path)
+		redirect_to path, alert: 'Você não tem permissão para essa ação'
 	end
 
 	def configure_permitted_params

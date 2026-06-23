@@ -1,57 +1,107 @@
-<p id="notice"><%= notice %></p>
+<div>
+	<%= render 'shared/header_profile' %>
 
-<h1>Budgets</h1>
+	<% flash.each do |type, message| %>
+		<div class="flash <%= type %>"><%= message %></div>
+	<% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Event date</th>
-      <th>Guest count</th>
-      <th>Status</th>
-      <th>Canceled</th>
-      <th>Start time</th>
-      <th>End time</th>
-      <th>Cake flavor</th>
-      <th>Main course</th>
-      <th>Profit</th>
-      <th>Revenue</th>
-      <th>Expense</th>
-      <th>Suggestion</th>
-      <th>Google event</th>
-      <th>Event type</th>
-      <th>User</th>
-      <th>Decoration</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+	<div style="padding: 20px 120px">
+		<div>
+			<div class="containerHeader">
+				<h1 class="titulo-perfil"> <%= set_index_title %> </h1>
 
-  <tbody>
-    <% @budgets.each do |budget| %>
-      <tr>
-        <td><%= budget.event_date %></td>
-        <td><%= budget.guest_count %></td>
-        <td><%= budget.status %></td>
-        <td><%= budget.canceled %></td>
-        <td><%= budget.start_time %></td>
-        <td><%= budget.end_time %></td>
-        <td><%= budget.cake_flavor %></td>
-        <td><%= budget.main_course %></td>
-        <td><%= budget.profit %></td>
-        <td><%= budget.revenue %></td>
-        <td><%= budget.expense %></td>
-        <td><%= budget.suggestion %></td>
-        <td><%= budget.google_event_id %></td>
-        <td><%= budget.event_type_id %></td>
-        <td><%= budget.user_id %></td>
-        <td><%= budget.decoration_id %></td>
-        <td><%= link_to 'Show', budget %></td>
-        <td><%= link_to 'Edit', edit_budget_path(budget) %></td>
-        <td><%= link_to 'Destroy', budget, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+				<% if current_user.admin? %>
+					<div style="display: flex; gap: 10px;">
+						<%= link_to "Orçamentos pendentes", budgets_path(status: "PENDENTE"), data: { turbo_frame: "budgets_list" }, class: "btnFiltro" %>
+						<%= link_to "Orçamentos confirmados", budgets_path(status: "CONFIRMADO"), data: { turbo_frame: "budgets_list" }, class: "btnFiltro" %>
+						<%= link_to "Orçamentos finalizados", budgets_path(status: "FINALIZADO"), data: { turbo_frame: "budgets_list" }, class: "btnFiltro" %>
+						<%= link_to "Todos os orçamentos", budgets_path, data: { turbo_frame: "budgets_list" }, class: "btnFiltro" %>
+					</div>		
+				<% else %>
+					<%= link_to "Novo orçamento", new_budget_path, class: "btn-default-bgRosa-perfil" %>
+				<% end %>
+			</div>
 
-<br>
+				<% if current_user.admin? %>
+					<%= form_with url: budgets_path, method: :get, data: { turbo_frame: "budgets_list" } do |f| %>
+						<div class="row">
+							<div class="field-filter">
+								<%= f.select :period,
+															[ 
+																['Próximos eventos', 'next'],
+																['Esta semana', 'this_week'],
+																['Este mês', 'this_month'],
+																['Próximos 30 dias', 'next_30_days'],
+																['Este ano', 'this_year']
+															],
+															{ prompt: "Filtrar por" },
+															{ 
+																class: "form-select",
+																onchange: "this.form.requestSubmit()",
+              									data: { turbo_frame: "budgets_list" }
+															 } %>															
+							</div>
 
-<%= link_to 'New Budget', new_budget_path %>
+							<div class="search">
+								<%= f.text_field :search, 
+									placeholder: "Buscar por cliente ou evento...", 
+									value: params[:search],
+									class: "search-input" %>
+								<%= f.submit "Buscar", class: "btnFiltro", style: "border: none;" %>
+							</div>
+						</div>
+					<% end %>
+				<% end %>
+
+			<div class="containerReservas"  data-controller="reservations">
+				<%= turbo_frame_tag "budgets_list", style: "width: 100%;" do %>
+					<div class="listaDeReservas">
+						<ul>
+							<% @budgets.each do |budget| %>
+								<li>
+									<div class="colIconName">
+										<%= render_budget_icon(budget) %>
+										<%= button_tag "#{budget.event_type.name} #{budget.user.name if current_user.admin?} " %>
+
+									</div>
+
+									<p> <%= budget.event_date.strftime("%d/%m/%Y") %> </p>
+
+									<div class="acaoReserva">
+										<% unless budget.confirmed? && current_user.admin? %>
+											<%= link_to confirm_budget_path(budget), method: :put, data: { confirm: "Tem certeza?" } do %>
+												<%= image_tag "icons/check", style: "width: 18px;" %>
+											<% end %>
+										<% end %>
+
+										<%= link_to budget_path(budget), 
+												data: { 
+													turbo_frame: "budget_details",
+													action: "click->reservations#hide"
+												} do %>
+											<%= image_tag "icons/eye", style: "width: 18px;" %>
+										<% end %>
+
+										<%= link_to cancel_budget_path(budget), method: :put, data: { confirm: "Tem certeza?" } do%>
+											<%= image_tag "icons/none", style: "width: 18px;" %>
+										<% end %>
+									</div>
+								</li>
+							<% end %>
+						</ul>
+					</div>
+				<% end %>
+
+				<div class="visualizacaoReserva" data-reservations-target="color" >
+					<div class="semReservaSelecionada" data-reservations-target="empty">
+						<%= image_tag "balao.png" %>
+						<h3>Selecione uma reserva para visualizar as informações aqui</h3>
+					</div>
+
+					<%= turbo_frame_tag "budget_details", class: "hidden", style: "height: 400px", data: { reservations_target: "selected" } do %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

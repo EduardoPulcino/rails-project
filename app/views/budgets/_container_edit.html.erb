@@ -1,0 +1,14 @@
+<%= turbo_frame_tag "budget_details", class: "hidden", style: "height: 400px", data: { reservations_target: "selected" } do %>
+	<div class="container-edit-budget">
+		<div>
+			<h2 class="tituloEventoSelecionado"> <%= budget.event_type.name %> <%= budget.user.name if current_user.admin? %> </h2>
+			<h3 class="dataEventoSelecionado"> <%= format_budget_datetime(budget) %> </h3>
+		</div>
+
+		<% if current_user.admin? %>
+			<%= render 'budgets/form_admin', budget: @budget %>
+		<% else %>
+			<%= render 'budgets/form_edit', budget: @budget %>
+		<% end %>
+	</div>
+<% end %>
