@@ -4,6 +4,8 @@ require 'googleauth/stores/file_token_store'
 
 google_json_key = ENV['GOOGLE_CALENDAR_JSON_KEY']
 
+return if google_json_key.blank?
+
 credentials = Google::Auth::ServiceAccountCredentials.make_creds(
   json_key_io: StringIO.new(google_json_key), 
   scope: 'https://www.googleapis.com/auth/calendar'
