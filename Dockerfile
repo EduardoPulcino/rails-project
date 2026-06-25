@@ -36,6 +36,7 @@ COPY . .
 
 RUN chmod +x config/setup_app.sh config/setup_app_production.sh worker/entrypoint.sh
 
+ENV NODE_OPTIONS=--openssl-legacy-provider
 RUN SECRET_KEY_BASE=placeholder bundle exec rails assets:precompile
 
 EXPOSE 3000
