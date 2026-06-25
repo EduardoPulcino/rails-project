@@ -46,7 +46,7 @@ class BudgetsController < ApplicationController
       if @budget.save   
         CreateEventGoogleCalendarWorker.perform_async(@budget.id)
 
-        format.html { redirect_to budget_url(@budget), notice: "Budget was successfully created." }
+        format.html { redirect_to budgets_path, notice: t('flash.budgets.create.success') }
         format.json { render :show, status: :created, location: @budget }
       else
         format.html { render :new, status: :unprocessable_entity }

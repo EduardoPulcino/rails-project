@@ -34,6 +34,8 @@ RUN yarn install --frozen-lockfile || yarn install
 
 COPY . .
 
-RUN chmod +x config/setup_app.sh worker/entrypoint.sh
+RUN chmod +x config/setup_app.sh config/setup_app_production.sh worker/entrypoint.sh
+
+RUN SECRET_KEY_BASE=placeholder bundle exec rails assets:precompile
 
 EXPOSE 3000

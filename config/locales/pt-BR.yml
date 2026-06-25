@@ -108,6 +108,9 @@ pt-BR:
         success: "Usuário atualizado com sucesso."
         error: "Erro ao atualizar o usuário"
     budgets:
+      create:
+        success: "Orçamento criado com sucesso."
+        error: "Erro ao criar orçamento"
       update:
         success: "Orçamento atualizado com sucesso."
         error: "Erro ao atualizar orçamento"
