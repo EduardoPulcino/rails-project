@@ -21,7 +21,7 @@ Rails.application.config.assets.precompile += %w[
   casamento.jpg
   CastrilloEventos.png
   clock.svg
-  coffebreak.jpeg
+  coffebreak.jpg
   decoracao4.jpg
   debutante.jpg
   doces.webp
