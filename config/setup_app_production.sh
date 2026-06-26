@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -e
-
 echo "-> PORT is: $PORT"
 echo "-> RAILS_ENV is: $RAILS_ENV"
 
@@ -11,4 +9,5 @@ if [ -f tmp/pids/server.pid ]; then
 fi
 
 echo "-> Running migrations..."
-bundle exec rails db:migrate
+bundle exec rails db:migrate 2>&1
+echo "-> Migration exit code: $?"
