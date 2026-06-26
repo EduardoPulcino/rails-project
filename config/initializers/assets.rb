@@ -40,7 +40,7 @@ Rails.application.config.assets.precompile += %w[
   Matriz\ \(1\).png
   Pencil.png
   piscina.jpg
-  Salvagos.jpeg
+  salgados.jpg
   teste.jpeg
   VectorVoltar.svg
   icons/arrow-back.svg
