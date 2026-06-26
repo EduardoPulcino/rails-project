@@ -17,7 +17,7 @@ Rails.application.config.assets.precompile += %w[
   BannerInicial.svg
   BannerLogin.svg
   Background\ -\ Login.svg
-  bolos.jpeg
+  bolos.jpg
   casamento.jpg
   CastrilloEventos.png
   clock.svg
@@ -41,7 +41,7 @@ Rails.application.config.assets.precompile += %w[
   Pencil.png
   piscina.jpg
   salgados.jpg
-  teste.jpeg
+  teste.jpgg
   VectorVoltar.svg
   icons/arrow-back.svg
   icons/arrow-forward.svg
