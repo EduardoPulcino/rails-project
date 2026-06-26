@@ -43,4 +43,14 @@ Rails.application.config.assets.precompile += %w[
   Salvagos.jpeg
   teste.jpeg
   VectorVoltar.svg
+  icons/arrow-back.svg
+  icons/arrow-forward.svg
+  icons/check.svg
+  icons/delete.svg
+  icons/download.svg
+  icons/edit.svg
+  icons/edit-decoration.svg
+  icons/eye.svg
+  icons/logout.svg
+  icons/none.svg
 ]

@@ -70,7 +70,7 @@
 									<div class="acaoReserva">
 										<% unless budget.confirmed? && current_user.admin? %>
 											<%= link_to confirm_budget_path(budget), method: :put, data: { confirm: "Tem certeza?" } do %>
-												<%= image_tag "icons/check", style: "width: 18px;" %>
+												<%= image_tag "icons/check.svg", style: "width: 18px;" %>
 											<% end %>
 										<% end %>
 
@@ -79,11 +79,11 @@
 													turbo_frame: "budget_details",
 													action: "click->reservations#hide"
 												} do %>
-											<%= image_tag "icons/eye", style: "width: 18px;" %>
+											<%= image_tag "icons/eye.svg", style: "width: 18px;" %>
 										<% end %>
 
 										<%= link_to cancel_budget_path(budget), method: :put, data: { confirm: "Tem certeza?" } do%>
-											<%= image_tag "icons/none", style: "width: 18px;" %>
+											<%= image_tag "icons/none.svg", style: "width: 18px;" %>
 										<% end %>
 									</div>
 								</li>
