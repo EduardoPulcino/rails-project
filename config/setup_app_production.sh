@@ -11,6 +11,9 @@ rm -f tmp/pids/server.pid
 echo "-> Running migrations..."
 bundle exec rails db:migrate
 
+echo "-> Seeding"...
+bundle exec rails db:seed
+
 echo "-> Starting Sidekiq..."
 bundle exec sidekiq -c 1 &
 
