@@ -91,6 +91,7 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
+    csv (3.3.5)
     date (3.4.1)
     declarative (0.0.20)
     devise (4.9.4)
@@ -155,6 +156,10 @@ GEM
       signet (>= 0.16, < 2.a)
     hashdiff (1.1.2)
     hashie (5.0.0)
+    httparty (0.24.2)
+      csv
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     httpclient (2.8.3)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
@@ -405,6 +410,7 @@ DEPENDENCIES
   google-api-client
   google-apis-calendar_v3
   googleauth
+  httparty
   importmap-rails
   jbuilder (~> 2.5)
   omniauth-google-oauth2

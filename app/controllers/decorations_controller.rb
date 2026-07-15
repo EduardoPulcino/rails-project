@@ -1,6 +1,6 @@
 class DecorationsController < ApplicationController
   before_action :authenticate_user!, except: %i[ grouped index show ]
-  before_action :set_decoration, only: %i[ show edit update destroy download_photos ]
+  before_action :set_decoration, only: %i[ show edit update destroy download_photos build_discord_notify_message ]
   before_action :set_event_types, only: %i[ grouped index create ]
   before_action :set_search_filter, only: %i[ index grouped specific ]
   before_action :authenticate_admin, only: %i[ edit update destroy new create download_photos ]
@@ -91,39 +91,25 @@ class DecorationsController < ApplicationController
   end
 
   def download_photos
-    unless @decoration.photos.attached?
-      redirect_to decoration_path(@decoration), alert: "Esta decoração não possui fotos para download."
-      return
-    end
+    result = Decorations::PhotosZipService.new(@decoration).call
 
-    zip_filename = "#{@decoration.name.parameterize}-fotos.zip"
-    buffer = Zip::OutputStream.write_buffer do |zip|
-      used_names = {}
+    return redirect_to decoration_path(@decoration), alert: "Erro ao baixar as fotos" if result.nil?
 
-      @decoration.photos.each do |photo|
-        entry_name = photo.filename.to_s
-        if used_names[entry_name]
-          used_names[entry_name] += 1
-          base = File.basename(entry_name, File.extname(entry_name))
-          ext = File.extname(entry_name)
-          entry_name = "#{base}-#{used_names[entry_name]}#{ext}"
-        else
-          used_names[entry_name] = 1
-        end
-
-        zip.put_next_entry(entry_name)
-        zip.write(photo.download)
-      end
-    end
-
-    buffer.rewind
-    send_data buffer.read, filename: zip_filename, type: "application/zip", disposition: "attachment"
+    Discord::DiscordNotificationWorker.perform_async(build_discord_notify_message)
+    send_data result.content, filename: result.filename, type: "application/zip", disposition: "attachment"
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_decoration
       @decoration = Decoration.find(params[:id])
+    end
+
+    def build_discord_notify_message
+      name = @decoration.name
+      timestamp = Time.current.strftime("%d/%m/%Y %H:%M")
+
+      "Download da decoração #{name} às #{timestamp}"
     end
 
     def set_event_types

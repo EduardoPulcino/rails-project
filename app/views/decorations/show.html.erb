@@ -27,7 +27,8 @@
           <% if @decoration.photos.attached? %>
             <%= link_to download_photos_decoration_path(@decoration),
               class: "btn-download-photos",
-              title: "Baixar todas as fotos" do %>
+              title: "Baixar todas as fotos",
+              data: { turbo: false } do %>
               <%= image_tag "icons/download.svg", size: "22x22", class: "icon-download" %>
             <% end %>
           <% end %>

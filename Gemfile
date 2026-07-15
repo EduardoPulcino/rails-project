@@ -33,6 +33,7 @@ gem 'googleauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 gem 'rubyzip', require: 'zip'
+gem 'httparty'
 
 
 # Use Capistrano for deployment
